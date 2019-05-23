@@ -6,9 +6,9 @@ session_start();
 
 /* DATABASE CONFIGURACIÓN */
 define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'jonaser06');
+define('DB_USERNAME', 'admin');
 //define('DB_USERNAME', 'global72_root');
-define('DB_PASSWORD', '1234@abcABC');
+define('DB_PASSWORD', '2019cloud$');
 //define('DB_PASSWORD', 'O.ZHl^JD]lE.');
 define('DB_DATABASE', 'melectro');
 //define('DB_DATABASE', 'global72_gt');
