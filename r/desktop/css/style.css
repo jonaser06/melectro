@@ -1,0 +1,84 @@
+/* Login page */
+body{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.wallpaper{
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+}
+.card-container{
+    position: relative;
+    top: 25%;
+    height: 50%;
+}
+.display-log{
+    display: inline-block;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.data-login{
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background: #fff;
+    text-align: center;
+}
+.img-container{
+    display: inline-block;
+    width: 50%;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 13%;
+}
+.img-container img{
+    width: 100%;
+}
+.logo-login{
+    background: #666;
+    text-align: center;
+}
+.icon-login{
+    font-size: 20px;
+    margin-right: 10px;
+}
+.input-login{
+    margin: 10px;
+}
+ /* dashboard  */
+ .cardd{
+    position: relative;
+    top: 20%;
+ }
+ .dashboard-content{
+    border: 1px solid #000;
+    padding-bottom: 35px;
+ }
+.dashboard-option{
+    box-sizing: border-box;
+    padding: 15px 3px 5px;
+    background: #fff;
+    
+    text-align: center;
+    margin-top: 35px;
+}
+.ad-op{
+    display: block;
+    color: #000;
+}
+.ad-op:hover{
+    color: #000;
+}
+.dashboard-option i{
+    font-size: 100px;
+}
+.dashboard-option p{
+    margin: 0px;
+}
+.wel-admin{
+    position: relative;
+    top: 15%;
+    text-align: center;
+}
