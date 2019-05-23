@@ -53,8 +53,8 @@ body{
     top: 20%;
  }
  .dashboard-content{
-    border: 1px solid #000;
     padding-bottom: 35px;
+    background: #e1e2e1
  }
 .dashboard-option{
     box-sizing: border-box;
