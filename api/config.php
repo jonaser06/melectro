@@ -10,7 +10,7 @@ define('DB_USERNAME', 'jonaser06');
 //define('DB_USERNAME', 'global72_root');
 define('DB_PASSWORD', '1234@abcABC');
 //define('DB_PASSWORD', 'O.ZHl^JD]lE.');
-define('DB_DATABASE', 'globaltruckdb');
+define('DB_DATABASE', 'melectro');
 //define('DB_DATABASE', 'global72_gt');
 
 function getDB(){

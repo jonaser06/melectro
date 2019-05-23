@@ -15,19 +15,15 @@ $app = new \Slim\Slim();
 
 /**encabezados de funciones */
 /**POST */
-$app->post('/login','login');
+
 
 /**GET */
-$app->get('/paypal/mode/','paypal');
+$app->get('/productos/all/','productos');
 
-
-
-
-
-function paypal(){
+function productos(){
     try {
         $db         =   getDB();
-        $sql        =   "SELECT * FROM paypal";
+        $sql        =   "SELECT * FROM productos";
         $stmt       =   $db->prepare($sql);
         $stmt->execute();
         $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -37,45 +33,6 @@ function paypal(){
     }
 }
 
-
-function login() {
-    
-    $request    =    \Slim\Slim::getInstance()->request();
-    $data       =    json_decode($request->getBody());
-    
-    try {
-        
-        $db         =   getDB();
-        $userData   =   '';
-        $sql        =   "SELECT user_id, username, name, lastname, email, pais, departamento, direccion, telefono, estado, rol FROM users WHERE (username=:username or email=:username) and password=:password ";
-        $stmt       =   $db->prepare($sql);
-        $stmt->bindParam("username", $data->username, PDO::PARAM_STR);
-        $password   =   hash('sha256',$data->password);
-        $stmt->bindParam("password", $password, PDO::PARAM_STR);
-        $stmt->execute();
-        $mainCount  =   $stmt->rowCount();
-        $userData   =   $stmt->fetch(PDO::FETCH_OBJ);
-        
-        if(!empty($userData))
-        {
-            $user_id            =   $userData->user_id;
-            $userData->token    =   apiToken($user_id);
-        }
-        
-        $db = null;
-         if($userData){
-               $userData        =   json_encode($userData);
-                echo '{"status":"true","data": ' .$userData . '}';
-            } else {
-               echo '{"status":"false","data":"usuario y/o contraseña incorrecta, vuelva a intentarlo"}';
-            }
-
-           
-    }
-    catch(PDOException $e) {
-        echo '{"status":"false","data":'. $e->getMessage() .'}';
-    }
-}
 
 /**test de prueba para SlimFramework */
 $app->get("/saludo/:name",function ($name){
