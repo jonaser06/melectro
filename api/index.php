@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 /**
  * Proyecto : Api para melectro
  * Autor    : Jonathan Sergio Narvaez Cuenca
