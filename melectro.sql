@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 21-05-2019 a las 06:13:55
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.2.12
+-- Servidor: localhost:3306
+-- Tiempo de generación: 28-05-2019 a las 16:04:41
+-- Versión del servidor: 5.7.26-0ubuntu0.18.04.1
+-- Versión de PHP: 7.2.17-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,8 +19,41 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `electrodb`
+-- Base de datos: `melectro`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalles`
+--
+
+CREATE TABLE `detalles` (
+  `iddetalles` int(10) NOT NULL,
+  `idventas` int(10) NOT NULL,
+  `idproducto` int(11) NOT NULL,
+  `cantidad` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `privilegios`
+--
+
+CREATE TABLE `privilegios` (
+  `idprivilegios` int(5) NOT NULL,
+  `tipo` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `privilegios`
+--
+
+INSERT INTO `privilegios` (`idprivilegios`, `tipo`) VALUES
+(1, 'cliente'),
+(2, 'administrador'),
+(3, 'superusuario');
 
 -- --------------------------------------------------------
 
@@ -1008,9 +1041,61 @@ INSERT INTO `productos` (`idproducto`, `codigo`, `descripcion`, `um`, `presentac
 (961, 'UZ95LS', 'UZ-95/L SOPORTE PARA', 'UNI', '0', '37,38', 'MN', 'NO'),
 (962, 'UZ95S', 'UZ-95/S SOPORTE PARA', 'UNI', '0', '37,38', 'MN', 'NO');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `idusuarios` int(10) NOT NULL,
+  `nombres` varchar(200) NOT NULL,
+  `apellidos` varchar(200) NOT NULL,
+  `tipo` int(15) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `documento` varchar(100) NOT NULL,
+  `telefono` int(50) NOT NULL,
+  `premium` varchar(10) NOT NULL,
+  `estado` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`idusuarios`, `nombres`, `apellidos`, `tipo`, `correo`, `password`, `documento`, `telefono`, `premium`, `estado`) VALUES
+(1, 'jonathan', 'narvaez', 3, 'jonaser06@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '47793117', 935142227, 'no', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ventas`
+--
+
+CREATE TABLE `ventas` (
+  `idventas` int(10) NOT NULL,
+  `idusuarios` int(10) NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `detalles`
+--
+ALTER TABLE `detalles`
+  ADD PRIMARY KEY (`iddetalles`),
+  ADD KEY `idventas` (`idventas`),
+  ADD KEY `idproductos` (`idproducto`);
+
+--
+-- Indices de la tabla `privilegios`
+--
+ALTER TABLE `privilegios`
+  ADD PRIMARY KEY (`idprivilegios`);
 
 --
 -- Indices de la tabla `productos`
@@ -1019,14 +1104,75 @@ ALTER TABLE `productos`
   ADD PRIMARY KEY (`idproducto`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`idusuarios`),
+  ADD KEY `tipo` (`tipo`);
+
+--
+-- Indices de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD PRIMARY KEY (`idventas`),
+  ADD KEY `idusuarios` (`idusuarios`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `detalles`
+--
+ALTER TABLE `detalles`
+  MODIFY `iddetalles` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `privilegios`
+--
+ALTER TABLE `privilegios`
+  MODIFY `idprivilegios` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
   MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=963;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `idusuarios` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  MODIFY `idventas` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `detalles`
+--
+ALTER TABLE `detalles`
+  ADD CONSTRAINT `detalles_ibfk_1` FOREIGN KEY (`idventas`) REFERENCES `ventas` (`idventas`),
+  ADD CONSTRAINT `detalles_ibfk_2` FOREIGN KEY (`idproducto`) REFERENCES `productos` (`idproducto`);
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`tipo`) REFERENCES `privilegios` (`idprivilegios`);
+
+--
+-- Filtros para la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`idusuarios`) REFERENCES `usuarios` (`idusuarios`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
