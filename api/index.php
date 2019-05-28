@@ -100,9 +100,9 @@ function login() {
         
         $db         =   getDB();
         $userData   =   '';
-        $sql        =   "SELECT idusuarios, nombres, apellidos, tipo, correo, documento, telefono, premium, estado FROM usuarios WHERE (correo=:username) and password=:password ";
+        $sql        =   "SELECT idusuarios, nombres, apellidos, tipo, correo, documento, telefono, premium FROM usuarios WHERE correo=:correo and password=:password";
         $stmt       =   $db->prepare($sql);
-        $stmt->bindParam("username", $data->username, PDO::PARAM_STR);
+        $stmt->bindParam("correo", $data->correo, PDO::PARAM_STR);
         $password   =   hash('sha256',$data->password);
         $stmt->bindParam("password", $password, PDO::PARAM_STR);
         $stmt->execute();
