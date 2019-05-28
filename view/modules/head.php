@@ -17,9 +17,9 @@
 
     <!-- rutas de estilos -->
     <?php
-        echo '<link rel="stylesheet" href="'.$url.'r/desktop/css/font-awesome.min.css">';
-        echo '<link rel="stylesheet" href="'.$url.'r/desktop/css/style.css">';
-        echo '<link rel="stylesheet" href="'.$url.'r/desktop/css/products.css">';
+        echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/font-awesome.min.css">';
+        echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/style.css">';
+        echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/products.css">';
     ?>
     
 </head>
