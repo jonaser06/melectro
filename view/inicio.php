@@ -4,12 +4,13 @@
 $app = new \Slim\Slim();
 
 $app->get('/','inicio');
+$app->get('/admin/','admin');
 $app->get('/productos/','productos');
 $app->get('/dashboard/','dashboard');
 
 function inicio(){
     include 'modules/head.php';
-    include 'modules/login.php';
+    include 'modules/inicio.php';
 }
 
 function productos(){
@@ -20,6 +21,10 @@ function productos(){
 function dashboard(){
     include 'modules/head.php';
     include 'modules/dashboard.php';
+}
+function admin(){
+    include 'modules/head.php';
+    include 'modules/login.php';
 }
 
 $app->run();

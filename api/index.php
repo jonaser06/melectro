@@ -15,11 +15,119 @@ require_once '../vendor/autoload.php';
 $app = new \Slim\Slim();
 
 /**encabezados de funciones */
-/**POST */
 
+/**POST */
+$app->post('/login','login');
+$app->post('/signup','signup');
 
 /**GET */
 $app->get('/productos/all/','productos');
+
+
+/* Funciones definidas */
+function signup() {
+    $request    =   \Slim\Slim::getInstance()->request();
+    $data       =    json_decode($request->getBody());
+
+    $nombres     =   $data->nombres;
+    $apellidos   =   $data->apellidos;
+    $tipo        =   $data->tipo;
+    $correo      =   $data->correo;
+    $password    =   $data->password;
+    $documento   =   $data->documento;
+    $telefono    =   $data->telefono;
+    $premium     =   $data->premium;
+    $estado      =   $data->estado;
+    
+    try {
+        
+        $email_check        =   preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$~i', $correo);
+        $password_check     =   preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);
+        if (strlen(trim($password))>0 && strlen(trim($correo))>0 && $email_check>0 && $password_check>0)
+        {
+            $db         =   getDB();
+            $userData   =   '';
+            $sql        =   "SELECT idusuarios FROM usuarios WHERE correo=:correo";
+            $stmt       =   $db->prepare($sql);
+            $stmt->bindParam("correo", $correo,PDO::PARAM_STR);
+            $stmt->execute();
+            $mainCount=$stmt->rowCount();
+            $created=time();
+            /**si el usuario no existe, se crea uno */
+            if($mainCount==0)
+            {
+                /**se inserta el nuevo usuario */
+                $sql1       =   "INSERT INTO usuarios(nombres, apellidos, tipo, correo, password, documento, telefono, premium, estado) 
+                                              VALUES (:nombres, :apellidos, :tipo, :correo, :password, :documento, :telefono, :premium, :estado)";
+                $stmt1      =   $db->prepare($sql1);
+                $stmt1->bindParam("nombres", $nombres,PDO::PARAM_STR);
+                $stmt1->bindParam("apellidos", $apellidos,PDO::PARAM_STR);
+                $stmt1->bindParam("tipo", $tipo,PDO::PARAM_STR);
+                $stmt1->bindParam("correo", $correo,PDO::PARAM_STR);
+                $password   =   hash('sha256',$data->password);
+                $stmt1->bindParam("password", $password,PDO::PARAM_STR);
+                $stmt1->bindParam("documento", $documento,PDO::PARAM_STR);
+                $stmt1->bindParam("telefono", $telefono,PDO::PARAM_STR);
+                $stmt1->bindParam("premium", $premium,PDO::PARAM_STR);
+                $stmt1->bindParam("estado", $estado,PDO::PARAM_STR);
+                $stmt1->execute();                
+                $userData   =   internalUserDetails($correo);
+            }
+            /**se cierra la conexion */
+            $db = null;
+            if($userData){
+               $userData = json_encode($userData);
+                echo '{"status":"true","data": ' .$userData. '}';
+            } else {
+                echo '{"status":"false","data":"Ingresar datos validos"}';
+            }  
+        }
+        else{
+            echo '{"status":"false","data":"Hey! Llena correctamente todos los espacios datos ;)"}';
+        }
+    }
+    catch(PDOException $e) {
+        echo '{"status":"false","data":'. $e->getMessage() .'}';
+    }
+}
+
+function login() {
+    
+    $request    =    \Slim\Slim::getInstance()->request();
+    $data       =    json_decode($request->getBody());
+    
+    try {
+        
+        $db         =   getDB();
+        $userData   =   '';
+        $sql        =   "SELECT idusuarios, nombres, apellidos, tipo, correo, documento, telefono, premium, estado FROM usuarios WHERE (correo=:username) and password=:password ";
+        $stmt       =   $db->prepare($sql);
+        $stmt->bindParam("username", $data->username, PDO::PARAM_STR);
+        $password   =   hash('sha256',$data->password);
+        $stmt->bindParam("password", $password, PDO::PARAM_STR);
+        $stmt->execute();
+        $mainCount  =   $stmt->rowCount();
+        $userData   =   $stmt->fetch(PDO::FETCH_OBJ);
+        
+        if(!empty($userData))
+        {
+            $user_id            =   $userData->user_id;
+            $userData->token    =   apiToken($user_id);
+        }
+        
+        $db = null;
+         if($userData){
+               $userData        =   json_encode($userData);
+                echo '{"status":"true","data": ' .$userData . '}';
+            } else {
+               echo '{"status":"false","data":"usuario y/o contraseña incorrecta, vuelva a intentarlo"}';
+            }
+           
+    }
+    catch(PDOException $e) {
+        echo '{"status":"false","data":'. $e->getMessage() .'}';
+    }
+}
 
 function productos(){
     try {
@@ -34,6 +142,24 @@ function productos(){
     }
 }
 
+function internalUserDetails($input) {
+    
+    try {
+        $db = getDB();
+        $sql = "SELECT idusuarios, nombres, apellidos, tipo, correo, documento, telefono, premium FROM usuarios WHERE correo=:input";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("input", $input,PDO::PARAM_STR);
+        $stmt->execute();
+        $usernameDetails = $stmt->fetch(PDO::FETCH_OBJ);
+        $usernameDetails->token = apiToken($usernameDetails->user_id);
+        $db = null;
+        return $usernameDetails;
+        
+    } catch(PDOException $e) {
+        echo '{"status":"false","data":'. $e->getMessage() .'}';
+    }
+    
+}
 
 /**test de prueba para SlimFramework */
 $app->get("/saludo/:name",function ($name){
