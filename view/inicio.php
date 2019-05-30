@@ -55,7 +55,7 @@ function validasesion(){
     $status = loginpage::signin();
     $decode = json_decode($status,true);
     if($decode['status'] =='true'){
-        echo 'contraseña correcta';
+        var_dump($decode['data']);
 /*         session_start();
         $_SESSION['LoginStatus']    =   'true';
         $_SESSION['username']       =   $decode['data']['username'];
@@ -76,7 +76,7 @@ function validasesion(){
                 }, 1000);
               </script>'; */
     }else{
-        echo 'contraseña incorrecta';
+        var_dump($decode['data']);
         /* echo '<script type="text/javascript">
                 setTimeout(function(){
                   window.location = "'.$url.'";
