@@ -52,7 +52,6 @@ function login(){
 }
 
 function validasesion(){
-    $url = Routesurl::CtrlRoutes();
     $status = loginpage::signin();
     $decode = json_decode($status,true);
     if($decode['status'] =='true'){

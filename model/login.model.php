@@ -2,7 +2,7 @@
 class loginpagemdl{
     public static function signinmdl($data){
         /** url base */
-        $urlBase = Routesurl::CtrlRoutes();
+        $urlBase = routes::routebase();
         /** api url */
         $url = $urlBase.'/api/login';
         /**crear nuevo recurso cURL */
