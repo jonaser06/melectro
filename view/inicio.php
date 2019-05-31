@@ -19,6 +19,7 @@ function inicio(){
 function productos(){
     include 'modules/head.php';
     include 'modules/productos.php';
+    include 'modules/footer.php';
 }
 
 function dashboard(){

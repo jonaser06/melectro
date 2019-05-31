@@ -45,7 +45,6 @@ body{
 .contenido {
     text-align: center;
     background: rgb(245, 245, 246);
-    height: 800px;
 }
 .prodcontent{
     display: inline-block;
