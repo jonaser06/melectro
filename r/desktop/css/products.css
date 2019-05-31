@@ -45,6 +45,7 @@ body{
 .contenido {
     text-align: center;
     background: rgb(245, 245, 246);
+    height: 800px;
 }
 .prodcontent{
     display: inline-block;
@@ -57,6 +58,8 @@ body{
     background: #fff;
     height: 80px;
     margin: 0px;
+    border: 1px solid #ccc;
+    border-radius: 8px; 
 }
 
 .roundstyle p{
@@ -64,6 +67,47 @@ body{
     font-size: 20px;
     margin: 0px;
 }
+.roundstyle p span{
+    margin: 0 15px; 
+}
 .t-align{
     text-align: left;
+    line-height: 80px;
+}
+.headbar{
+    display: inline-block;
+    width: 94%;
+}
+.bodybar{
+    margin-top: 20px;
+    display: inline-block;
+    width: 96%;
+}
+.bodybar .row{
+    margin: 0px !important;
+}
+.item-products{
+    background: #fff;
+    border-radius: 8px; 
+    padding-bottom: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.item-products:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.produc-cont{
+    padding: 0 15px;
+}
+.produc-cont p{
+    margin: 0px;
+}
+.img-prod{
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+.img-prod img{
+    width: 100%;
+    height: 100%;
 }
