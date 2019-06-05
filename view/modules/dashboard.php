@@ -1,4 +1,4 @@
-<body>
+<body style="overflow:hidden;">
     <div class="wallpaper">
         <h3 class="wel-admin">Welcome Administrator</h3>
         <div class="row cardd">
