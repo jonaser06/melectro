@@ -6,8 +6,8 @@ $app = new \Slim\Slim();
 $app->get('/','inicio');
 $app->get('/admin/','admin');
 $app->get('/productos/','productos');
-$app->get('/dashboard/','dashboard');
 $app->get('/login/','login');
+$app->get('/logout/','logout');
 
 $app->post('/validasesion/','validasesion');
 
@@ -17,25 +17,22 @@ function inicio(){
 }
 
 function productos(){
-    include 'modules/head.php';
-    include 'modules/productos.php';
-    include 'modules/footer.php';
-}
-
-function dashboard(){
-    include 'modules/head.php';
-    include 'modules/dashboard.php';
+    session_start();
+    if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+      include 'modules/head.php';
+      include 'modules/productos.php';
+      include 'modules/footer.php';
+    }else{
+      echo '<script type="text/javascript">
+                  window.location = "login";
+              </script>';
+    }
 }
 
 function admin(){
     $url = routes::routebase();
     session_start();
     if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
-        $active = array(
-            "account"   =>"",
-            "history"   =>"not",
-            "cart"      =>"not"
-        );
       include 'modules/head.php';
       include 'modules/dashboard.php';
       include 'modules/footer.php';
@@ -51,32 +48,46 @@ function login(){
     include 'modules/head.php';
     include 'modules/login.php';
 }
+function logout(){
+  $url = routes::routebase();
+  session_start();
+  if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+    session_destroy();
+    echo 'Cerrando Cuenta ....';
+    echo '<script type="text/javascript">
+            setTimeout(function(){
+                window.location = "'.$url.'/login";
+            }, 1000);
+            </script>';
+  }else{
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
+  }
+}
 
 function validasesion(){
+    $url2 = routes::routebase();
     $status = loginpage::signin();
     $decode = json_decode($status,true);
 
     if($decode['status'] =='true'){
-        var_dump($decode['data']);
-/*         session_start();
+        session_start();
         $_SESSION['LoginStatus']    =   'true';
-        $_SESSION['username']       =   $decode['data']['username'];
-        $_SESSION['name']           =   $decode['data']['name'];
-        $_SESSION['lastname']       =   $decode['data']['lastname'];
-        $_SESSION['email']          =   $decode['data']['email'];
-        $_SESSION['pais']           =   $decode['data']['pais'];
-        $_SESSION['departamento']   =   $decode['data']['departamento'];
-        $_SESSION['direccion']      =   $decode['data']['direccion'];
+        $_SESSION['nombres']       =   $decode['data']['nombres'];
+        $_SESSION['apellidos']       =   $decode['data']['apellidos'];
+        $_SESSION['tipo']       =   $decode['data']['tipo'];
+        $_SESSION['correo']       =   $decode['data']['correo'];
+        $_SESSION['documento']       =   $decode['data']['documento'];
         $_SESSION['telefono']       =   $decode['data']['telefono'];
-        $_SESSION['estado']         =   $decode['data']['estado'];
-        $_SESSION['rol']            =   $decode['data']['rol'];
-        $_SESSION['token']          =   $decode['data']['token'];
+        $_SESSION['premium']       =   $decode['data']['premium'];
+        $_SESSION['token']       =   $decode['data']['token'];
         echo 'Validando Cuenta ....';
         echo '<script type="text/javascript">
                 setTimeout(function(){
-                  window.location = "'.$url.'";
+                  window.location = "'.$url2.'/admin";
                 }, 1000);
-              </script>'; */
+              </script>';
     }else{
         echo 'incorrecto';
         /* echo '<script type="text/javascript">

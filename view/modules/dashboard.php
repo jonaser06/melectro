@@ -49,7 +49,7 @@
                         </a>
                     </div>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
-                        <a href="#" class="ad-op">
+                        <a href="logout" class="ad-op">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
                             <p>Cerrar Sesión</p>
                         </a>
