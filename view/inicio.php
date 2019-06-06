@@ -55,6 +55,7 @@ function login(){
 function validasesion(){
     $status = loginpage::signin();
     $decode = json_decode($status,true);
+
     if($decode['status'] =='true'){
         var_dump($decode['data']);
 /*         session_start();
@@ -77,7 +78,7 @@ function validasesion(){
                 }, 1000);
               </script>'; */
     }else{
-        var_dump($decode['data']);
+        echo 'incorrecto';
         /* echo '<script type="text/javascript">
                 setTimeout(function(){
                   window.location = "'.$url.'";

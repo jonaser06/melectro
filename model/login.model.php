@@ -1,25 +1,58 @@
 <?php
 class loginpagemdl{
     public static function signinmdl($data){
-        /** url base */
-        $urlBase = routes::routebase();
-        /** api url */
-        $url = $urlBase.'/api/login';
-        /**crear nuevo recurso cURL */
-        $ch = curl_init($url);
-        /**preparacion del json para el envio */
-        $payload = $data;
-        /**adjuntamos json al post */
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        /**establecemos contenido del tipo json */
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        /**respuesta de retorno */
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        /**ejecutar la solicitud post */
-        $result = curl_exec($ch);
-        /**cerramos recurso cURL */
-        curl_close($ch);
+        $data = json_decode($data,true);
+        try {
+            $db         =   getDB();
+            $userData   =   '';
+            $sql        =   "SELECT idusuarios, nombres, apellidos, tipo, correo, documento, telefono, premium FROM usuarios WHERE correo=:correo and password=:password";
+            $stmt       =   $db->prepare($sql);
+            $stmt->bindParam("correo", $data['correo'], PDO::PARAM_STR);
+            $password   =   hash('sha256',$data['password']);
+            $stmt->bindParam("password", $password, PDO::PARAM_STR);
+            $stmt->execute();
+            $mainCount  =   $stmt->rowCount();
+            $userData   =   $stmt->fetch(PDO::FETCH_OBJ);
+            
+            if(!empty($userData))
+            {
+                $user_id            =   $userData->user_id;
+                $userData->token    =   apiToken($user_id);
+            }
+            
+            $db = null;
+             if($userData){
+                   $userData        =   json_encode($userData);
+                   $result = '{"status":"true","data": ' .$userData . '}';
+                } else {
+                    $result = '{"status":"false","data":"usuario y/o contraseña incorrecta, vuelva a intentarlo"}';
+                }
+               
+        }
+        catch(PDOException $e) {
+            echo '{"status":"false","data":'. $e->getMessage() .'}';
+        }
         return $result;
+    }
+
+
+    function internalUserDetails($input) {
+    
+        try {
+            $db = getDB();
+            $sql = "SELECT idusuarios, nombres, apellidos, tipo, correo, documento, telefono, premium FROM usuarios WHERE correo=:input";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("input", $input,PDO::PARAM_STR);
+            $stmt->execute();
+            $usernameDetails = $stmt->fetch(PDO::FETCH_OBJ);
+            $usernameDetails->token = apiToken($usernameDetails->user_id);
+            $db = null;
+            return $usernameDetails;
+            
+        } catch(PDOException $e) {
+            echo '{"status":"false","data":'. $e->getMessage() .'}';
+        }
+        
     }
 }
 

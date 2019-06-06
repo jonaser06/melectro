@@ -19,4 +19,8 @@
         $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $dbConnection;
     }
+    function apiToken($session_uid) {
+        $key=md5(SITE_KEY.$session_uid);
+        return hash('sha256', $key);
+    }
 ?>

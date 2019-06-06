@@ -41,7 +41,7 @@
                                                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                                 </p>
                                             </div>
-                                            <h4>S/. 100.00</h4>
+                                            <h4>S/. '.$value['precio'].'</h4>
                                         </div> 
                                     </div>';
                             }
