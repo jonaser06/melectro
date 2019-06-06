@@ -11,13 +11,13 @@
                         </a>
                     </div>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
-                        <a href="#" class="ad-op">
+                        <a href="app" class="ad-op">
                             <i class="fa fa-rocket" aria-hidden="true"></i>
                             <p>App</p>
                         </div>
                         </a>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
-                        <a href="#" class="ad-op">
+                        <a href="notification" class="ad-op">
                             <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             <p>Push Notification</p>
                         </a>
@@ -31,13 +31,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
-                        <a href="#" class="ad-op">
+                        <a href="users" class="ad-op">
                             <i class="fa fa-users" aria-hidden="true"></i>
                             <p>Usuarios</p>
                         </a>
                     </div>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
-                        <a href="#" class="ad-op">
+                        <a href="support" class="ad-op">
                             <i class="fa fa-question-circle" aria-hidden="true"></i>
                             <p>Soporte</p>
                         </a>

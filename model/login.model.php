@@ -1,4 +1,5 @@
 <?php
+require_once 'conexion.php';
 class loginpagemdl{
     public static function signinmdl($data){
         $data = json_decode($data,true);

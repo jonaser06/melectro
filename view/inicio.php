@@ -5,15 +5,46 @@ $app = new \Slim\Slim();
 
 $app->get('/','inicio');
 $app->get('/admin/','admin');
+$app->get('/app/','app');
+$app->get('/notification/','notification');
 $app->get('/productos/','productos');
+$app->get('/users/','users');
+$app->get('/support/','support');
 $app->get('/login/','login');
 $app->get('/logout/','logout');
 
 $app->post('/validasesion/','validasesion');
 
+
 function inicio(){
     include 'modules/head.php';
     include 'modules/inicio.php';
+}
+
+function app(){
+  session_start();
+  if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+    include 'modules/head.php';
+    include 'modules/productos.php';
+    include 'modules/footer.php';
+  }else{
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
+  }
+}
+
+function notification(){
+  session_start();
+  if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+    include 'modules/head.php';
+    include 'modules/productos.php';
+    include 'modules/footer.php';
+  }else{
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
+  }
 }
 
 function productos(){
@@ -27,6 +58,32 @@ function productos(){
                   window.location = "login";
               </script>';
     }
+}
+
+function users(){
+  session_start();
+  if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+    include 'modules/head.php';
+    include 'modules/users.php';
+    include 'modules/footer.php';
+  }else{
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
+  }
+}
+
+function support(){
+  session_start();
+  if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+    include 'modules/head.php';
+    include 'modules/users.php';
+    include 'modules/footer.php';
+  }else{
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
+  }
 }
 
 function admin(){
