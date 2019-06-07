@@ -118,26 +118,26 @@ $base = basename($url2);
                                             <td class="'.$color.'">'.$estado.'</td>
                                             <td>
                                                 <ul class="user-option">
-                                                    <li><span class="editT text-primary fa fa-pencil"></span></li>
-                                                    <li><span class="editT text-success fa fa-check" style="display:none"></span></li>
+                                                    <li><span id="edit'.$value['idusuarios'].'" class="editT'.$value['idusuarios'].' text-primary fa fa-pencil"></span></li>
+                                                    <li><span id="del'.$value['idusuarios'].'" class="editT'.$value['idusuarios'].' text-success fa fa-check" style="display:none"></span></li>
                                                     <li><span class="text-danger fa fa-times"></span></li>
                                                 </ul>
                                             </td>
 
                                             <script>
                                                 var contador = 1;
-                                                $(".editT").click(function(){
+                                                $(".editT'.$value['idusuarios'].'").click(function(){
                                                     if(contador == 1){
                                                         console.log(1);
-                                                        $(".fa-pencil").css("display","none");
-                                                        $(".fa-check").css("display","inline");
+                                                        $("#edit'.$value['idusuarios'].'").css("display","none");
+                                                        $("#del'.$value['idusuarios'].'").css("display","inline");
 
                                                         $(".ViewC'.$value['idusuarios'].'").css("display","none");
                                                         $(".EditC'.$value['idusuarios'].'").css("display","block");
                                                         contador = 0;
                                                     }else{
-                                                        $(".fa-pencil").css("display","inline");
-                                                        $(".fa-check").css("display","none");
+                                                        $("#edit'.$value['idusuarios'].'").css("display","inline");
+                                                        $("#del'.$value['idusuarios'].'").css("display","none");
 
                                                         $(".ViewC'.$value['idusuarios'].'").css("display","block");
                                                         $(".EditC'.$value['idusuarios'].'").css("display","none");
@@ -157,8 +157,6 @@ $base = basename($url2);
                     <div class="footbar">
                         <div class="row">
                             <div class="col-md-12"> 
-                                <input type="button" class="boton-add" id="btn_editar" style="margin: 10px 10px;padding: 10px 10px;" value="Editar">
-                                <input type="button" class="boton-add" style="margin: 10px 10px; padding: 10px 10px;" value="Guardar">
                                 <script>
                                 $(document).ready(function(){
 
