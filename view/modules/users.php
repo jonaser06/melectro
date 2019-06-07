@@ -25,14 +25,15 @@ $base = basename($url2);
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Tipo</th>
-                                <th>Correo</th>
-                                <th>Documento</th>
-                                <th>Telefono</th>
-                                <th>Premium</th>
-                                <th>Estado</th>
+                                <th style="width:120px;">Nombres</th>
+                                <th style="width:120px;">Apellidos</th>
+                                <th style="width:120px;">Tipo</th>
+                                <th style="width:120px;">Correo</th>
+                                <th style="width:120px;">Documento</th>
+                                <th style="width:120px;">Telefono</th>
+                                <th style="width:120px;">Premium</th>
+                                <th style="width:120px;">Estado</th>
+                                <th style="width:120px;">Accion</th>
                             </tr>
                             </thead>
                             <?php
@@ -52,62 +53,103 @@ $base = basename($url2);
                                     
                                     /* listando */
                                     echo '<tr>
-                                            <td>'.$value['nombres'].'</td>
-                                            <td>'.$value['apellidos'].'</td>
-                                            <td>'.$value['tipo'].'</td>
-                                            <td>'.$value['correo'].'</td>
-                                            <td>'.$value['documento'].'</td>
-                                            <td>'.$value['telefono'].'</td>
-                                            <td>'.$value['premium'].'</td>
+                                            <td style="width:120px;">
+                                                <div class="ViewC'.$value['idusuarios'].'" style="display:block;">
+                                                    '.$value['nombres'].'
+                                                </div>
+                                                <div class="EditC'.$value['idusuarios'].'" style="display:none;">
+                                                    <input type="text" class="form-control" value="'.$value['nombres'].'" name="nombrePost">
+                                                </div>
+                                            </td>
+                                            <td style="width:120px;">
+                                                <div class="ViewC'.$value['idusuarios'].'" style="display:block;">
+                                                    '.$value['apellidos'].'
+                                                </div>
+                                                <div class="EditC'.$value['idusuarios'].'" style="display:none;">
+                                                    <input type="text" class="form-control" value="'.$value['apellidos'].'" name="apellidoPost">
+                                                </div>
+                                            </td>
+                                            <td style="width:120px;">
+                                                <div class="ViewC'.$value['idusuarios'].'" style="display:block;">
+                                                    '.$value['tipo'].'
+                                                </div>
+                                                <div class="EditC'.$value['idusuarios'].'" style="display:none;">
+                                                    <select class="form-control form-control-sm" name="tipoClientePost" style="padding:6px 12px; height:38px;">
+                                                        <option value="0">Cliente</option>
+                                                        <option value="1">Administrador</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="ViewC'.$value['idusuarios'].'" style="display:block;">
+                                                    '.$value['correo'].'
+                                                </div>
+                                                <div class="EditC'.$value['idusuarios'].'" style="display:none;">
+                                                    <input type="text" class="form-control" value="'.$value['correo'].'" name="correoPost">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="ViewC'.$value['idusuarios'].'" style="display:block;">
+                                                    '.$value['documento'].'
+                                                </div>
+                                                <div class="EditC'.$value['idusuarios'].'" style="display:none;">
+                                                    <input type="text" class="form-control" value="'.$value['documento'].'" name="documentoPost">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="ViewC'.$value['idusuarios'].'" style="display:block;">
+                                                    '.$value['telefono'].'
+                                                </div>
+                                                <div class="EditC'.$value['idusuarios'].'" style="display:none;">
+                                                    <input type="text" class="form-control" value="'.$value['telefono'].'" name="TelefonoPost">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="ViewC'.$value['idusuarios'].'" style="display:block;">
+                                                    '.$value['premium'].'
+                                                </div>
+                                                <div class="EditC'.$value['idusuarios'].'" style="display:none;">
+                                                    <select class="form-control form-control-sm" name="premiumPost" style="padding:6px 12px; height:38px;">
+                                                        <option value="0">No</option>
+                                                        <option value="1">Si</option>
+                                                    </select>
+                                                </div>
+                                            </td>
                                             <td class="'.$color.'">'.$estado.'</td>
+                                            <td>
+                                                <ul class="user-option">
+                                                    <li><span class="editT text-primary fa fa-pencil"></span></li>
+                                                    <li><span class="editT text-success fa fa-check" style="display:none"></span></li>
+                                                    <li><span class="text-danger fa fa-times"></span></li>
+                                                </ul>
+                                            </td>
+
+                                            <script>
+                                                var contador = 1;
+                                                $(".editT").click(function(){
+                                                    if(contador == 1){
+                                                        console.log(1);
+                                                        $(".fa-pencil").css("display","none");
+                                                        $(".fa-check").css("display","inline");
+
+                                                        $(".ViewC'.$value['idusuarios'].'").css("display","none");
+                                                        $(".EditC'.$value['idusuarios'].'").css("display","block");
+                                                        contador = 0;
+                                                    }else{
+                                                        $(".fa-pencil").css("display","inline");
+                                                        $(".fa-check").css("display","none");
+
+                                                        $(".ViewC'.$value['idusuarios'].'").css("display","block");
+                                                        $(".EditC'.$value['idusuarios'].'").css("display","none");
+                                                        contador = 1;   
+                                                    }
+                                                });
+                                            </script>
                                         </tr>';
 
                                 }
                                 echo '</tbody>';
 
-                                echo '<tbody class="vista_t" style="display:none">';
-                                foreach ($json as $key => $value) {
-                                    if($value['estado']==1){
-                                        $estado = 'Activo';
-                                        $color = 'text-success';
-                                    }else{
-                                        $estado = 'Inactivo';
-                                        $color = 'text-danger';
-                                    }
-                                    echo '<tr>
-                                        <td>
-                                            <input type="hidden" value="'.$value['idusuarios'].'" name="idusuario"> 
-                                            <input type="text" class="form-control" value="'.$value['nombres'].'" name="nombrePost">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" value="'.$value['apellidos'].'" name="apellidoPost">
-                                        </td>
-                                        <td>
-                                            <select class="form-control form-control-sm" name="tipoClientePost" style="padding:6px 12px; height:38px;">
-                                                <option value="0">Cliente</option>
-                                                <option value="1">Administrador</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" value="'.$value['correo'].'" name="correoPost">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" value="'.$value['documento'].'" name="documentoPost">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" value="'.$value['telefono'].'" name="TelefonoPost">
-                                        </td>
-                                        <td>
-                                            <select class="form-control form-control-sm" name="premiumPost" style="padding:6px 12px; height:38px;">
-                                                <option value="0">No</option>
-                                                <option value="1">Si</option>
-                                            </select>
-                                        </td>
-                                        <td class="'.$color.'">'.$estado.'</td>
-                                    </tr>';
-
-                                }
-                                echo '</tbody>';
                             ?>
                             </tbody>
                         </table>
@@ -118,21 +160,16 @@ $base = basename($url2);
                                 <input type="button" class="boton-add" id="btn_editar" style="margin: 10px 10px;padding: 10px 10px;" value="Editar">
                                 <input type="button" class="boton-add" style="margin: 10px 10px; padding: 10px 10px;" value="Guardar">
                                 <script>
-                                    $(document).ready(function(){
-                                        var contador = 1;
-                                        $('#btn_editar').click(function(){
-                                            if(contador == 1){
-                                                $('.vista_nn').css('display','none');
-                                                $('.vista_t').css('display','contents');
-                                                contador = 0;
-                                            }else{
-                                                $('.vista_nn').css('display','contents');
-                                                $('.vista_t').css('display','none');
-                                                contador = 1;   
-                                            }
-                                        });
+                                $(document).ready(function(){
+
+                                    $('.fa-times').click(function(){
+                                        if (confirm('Esta seguro que desea eliminar a este Usuario')) {
+                                            // do delete item
+                                        }
                                     });
-                                </script>
+
+                                });
+                            </script>
                             </div>
                         </div>
                     </div>
