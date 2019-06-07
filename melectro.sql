@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 28-05-2019 a las 16:04:41
--- Versión del servidor: 5.7.26-0ubuntu0.18.04.1
--- Versión de PHP: 7.2.17-0ubuntu0.18.04.1
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 07-06-2019 a las 04:27:00
+-- Versión del servidor: 10.3.15-MariaDB
+-- Versión de PHP: 7.1.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -1065,7 +1065,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuarios`, `nombres`, `apellidos`, `tipo`, `correo`, `password`, `documento`, `telefono`, `premium`, `estado`) VALUES
-(1, 'jonathan', 'narvaez', 3, 'jonaser06@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '47793117', 935142227, 'no', 1);
+(1, 'jonathan', 'narvaez', 3, 'jonaser06@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '47793117', 935142227, 'no', 1),
+(2, 'michael steve', 'giraldo castromonte', 1, 'msgiraldo.12@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '72203121', 915786101, 'no', 1),
+(3, 'oscar alberto', 'porles trigueros', 1, 'oskrporles93@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '70779822', 924771483, 'no', 0),
+(4, 'richard', 'nina paucara', 1, 'richardninap@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '40776870', 2147483647, 'no', 1),
+(5, 'jorge antonio', 'chavez quiroga', 1, 'jorgechavez@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '71897896', 941329646, 'no', 1);
 
 -- --------------------------------------------------------
 
@@ -1143,7 +1147,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idusuarios` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`

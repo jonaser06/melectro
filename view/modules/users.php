@@ -8,7 +8,7 @@ $base = basename($url2);
         ?>
         <div class="contenido">
             <div class="prodcontent">
-                <form action="save">
+                <form action="updateuser" method="POST">
                     <div class="headbar">
                         <div class="row roundstyle">
                             <div class="col-md-12 t-align">
@@ -76,6 +76,7 @@ $base = basename($url2);
                                     }
                                     echo '<tr>
                                         <td>
+                                            <input type="hidden" value="'.$value['idusuarios'].'" name="idusuario"> 
                                             <input type="text" class="form-control" value="'.$value['nombres'].'" name="nombrePost">
                                         </td>
                                         <td>
@@ -115,7 +116,7 @@ $base = basename($url2);
                         <div class="row">
                             <div class="col-md-12"> 
                                 <input type="button" class="boton-add" id="btn_editar" style="margin: 10px 10px;padding: 10px 10px;" value="Editar">
-                                <button class="boton-add" style="margin: 10px 10px; padding: 10px 10px;">Guardar</button>
+                                <input type="button" class="boton-add" style="margin: 10px 10px; padding: 10px 10px;" value="Guardar">
                                 <script>
                                     $(document).ready(function(){
                                         var contador = 1;

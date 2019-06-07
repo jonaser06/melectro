@@ -14,6 +14,7 @@ $app->get('/login/','login');
 $app->get('/logout/','logout');
 
 $app->post('/validasesion/','validasesion');
+$app->post('/updateuser/','updateuser');
 
 
 function inicio(){
@@ -123,6 +124,8 @@ function logout(){
   }
 }
 
+/* POST */
+
 function validasesion(){
     $url2 = routes::routebase();
     $status = loginpage::signin();
@@ -154,6 +157,32 @@ function validasesion(){
               </script>'; */
     }
 }
+
+function updateuser(){
+  $id = $_POST['idusuario'];
+  $nombres = $_POST['nombrePost'];
+  $apellidos = $_POST['apellidoPost'];
+  $tipo = $_POST['tipoClientePost'];
+  $correo = $_POST['correoPost'];
+  $documento = $_POST['documentoPost'];
+  $telefono = $_POST['TelefonoPost'];
+  $premium = $_POST['premiumPost'];
+
+  $data = array(
+    'id'=> $id,
+    'nombre'=>$nombres,
+    'apellidos'=>$apellidos,
+    'tipo'=>$tipo,
+    'correo'=>$coreo,
+    'documento'=>$documento,
+    'telefono'=>$telefono,
+    'premium'=>$premium
+  );
+  var_dump($data);
+
+
+}
+
 
 $app->run();
 
