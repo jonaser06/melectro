@@ -119,25 +119,34 @@ $base = basename($url2);
                                             <td>
                                                 <ul class="user-option">
                                                     <li><span id="edit'.$value['idusuarios'].'" class="editT'.$value['idusuarios'].' text-primary fa fa-pencil"></span></li>
-                                                    <li><span id="del'.$value['idusuarios'].'" class="editT'.$value['idusuarios'].' text-success fa fa-check" style="display:none"></span></li>
-                                                    <li><span class="text-danger fa fa-times"></span></li>
+                                                    <li><span id="save'.$value['idusuarios'].'" class="editT'.$value['idusuarios'].' text-success fa fa-check" style="display:none"></span></li>
+                                                    <li><span id="del'.$value['idusuarios'].'" class="text-danger fa fa-times"></span></li>
                                                 </ul>
                                             </td>
 
                                             <script>
+                                                $("#del'.$value['idusuarios'].'").click(function(){
+                                                    if (confirm("Esta seguro que desea eliminar a este Usuario '.$value['idusuarios'].'")) {
+                                                        
+                                                    }
+                                                });
+
+                                                $("#save'.$value['idusuarios'].'").click(function(){
+                                                    console.log("guardando usuario '.$value['idusuarios'].'");
+                                                });
+
                                                 var contador = 1;
                                                 $(".editT'.$value['idusuarios'].'").click(function(){
                                                     if(contador == 1){
-                                                        console.log(1);
                                                         $("#edit'.$value['idusuarios'].'").css("display","none");
-                                                        $("#del'.$value['idusuarios'].'").css("display","inline");
+                                                        $("#save'.$value['idusuarios'].'").css("display","inline");
 
                                                         $(".ViewC'.$value['idusuarios'].'").css("display","none");
                                                         $(".EditC'.$value['idusuarios'].'").css("display","block");
                                                         contador = 0;
                                                     }else{
                                                         $("#edit'.$value['idusuarios'].'").css("display","inline");
-                                                        $("#del'.$value['idusuarios'].'").css("display","none");
+                                                        $("#save'.$value['idusuarios'].'").css("display","none");
 
                                                         $(".ViewC'.$value['idusuarios'].'").css("display","block");
                                                         $(".EditC'.$value['idusuarios'].'").css("display","none");
@@ -157,17 +166,7 @@ $base = basename($url2);
                     <div class="footbar">
                         <div class="row">
                             <div class="col-md-12"> 
-                                <script>
-                                $(document).ready(function(){
-
-                                    $('.fa-times').click(function(){
-                                        if (confirm('Esta seguro que desea eliminar a este Usuario')) {
-                                            // do delete item
-                                        }
-                                    });
-
-                                });
-                            </script>
+                                
                             </div>
                         </div>
                     </div>
