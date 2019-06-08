@@ -159,24 +159,13 @@ function validasesion(){
 }
 
 function updateuser(){
-  $id = $_POST['idusuario'];
-  $nombres = $_POST['nombrePost'];
-  $apellidos = $_POST['apellidoPost'];
-  $tipo = $_POST['tipoClientePost'];
-  $correo = $_POST['correoPost'];
-  $documento = $_POST['documentoPost'];
-  $telefono = $_POST['TelefonoPost'];
-  $premium = $_POST['premiumPost'];
+  $request    =   \Slim\Slim::getInstance()->request();
+  $data       =    json_decode($request->getBody());
+
+  $nombre = $data->nombre;
 
   $data = array(
-    'id'=> $id,
-    'nombre'=>$nombres,
-    'apellidos'=>$apellidos,
-    'tipo'=>$tipo,
-    'correo'=>$coreo,
-    'documento'=>$documento,
-    'telefono'=>$telefono,
-    'premium'=>$premium
+    'nombre'=>$nombre
   );
   var_dump($data);
 

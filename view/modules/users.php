@@ -1,4 +1,4 @@
-<?php
+ñ<?php
 $base = basename($url2);
 ?>
 <body>
@@ -58,7 +58,7 @@ $base = basename($url2);
                                                     '.$value['nombres'].'
                                                 </div>
                                                 <div class="EditC'.$value['idusuarios'].'" style="display:none;">
-                                                    <input type="text" class="form-control" value="'.$value['nombres'].'" name="nombrePost">
+                                                    <input type="text" class="name'.$value['idusuarios'].' form-control" value="'.$value['nombres'].'" name="nombrePost">
                                                 </div>
                                             </td>
                                             <td style="width:120px;">
@@ -66,7 +66,7 @@ $base = basename($url2);
                                                     '.$value['apellidos'].'
                                                 </div>
                                                 <div class="EditC'.$value['idusuarios'].'" style="display:none;">
-                                                    <input type="text" class="form-control" value="'.$value['apellidos'].'" name="apellidoPost">
+                                                    <input type="text" class="apellido'.$value['idusuarios'].' form-control" value="'.$value['apellidos'].'" name="apellidoPost">
                                                 </div>
                                             </td>
                                             <td style="width:120px;">
@@ -74,7 +74,7 @@ $base = basename($url2);
                                                     '.$value['tipo'].'
                                                 </div>
                                                 <div class="EditC'.$value['idusuarios'].'" style="display:none;">
-                                                    <select class="form-control form-control-sm" name="tipoClientePost" style="padding:6px 12px; height:38px;">
+                                                    <select class="select'.$value['idusuarios'].' form-control form-control-sm" name="tipoClientePost" style="padding:6px 12px; height:38px;">
                                                         <option value="0">Cliente</option>
                                                         <option value="1">Administrador</option>
                                                     </select>
@@ -85,7 +85,7 @@ $base = basename($url2);
                                                     '.$value['correo'].'
                                                 </div>
                                                 <div class="EditC'.$value['idusuarios'].'" style="display:none;">
-                                                    <input type="text" class="form-control" value="'.$value['correo'].'" name="correoPost">
+                                                    <input type="text" class="correo'.$value['idusuarios'].' form-control" value="'.$value['correo'].'" name="correoPost">
                                                 </div>
                                             </td>
                                             <td>
@@ -93,7 +93,7 @@ $base = basename($url2);
                                                     '.$value['documento'].'
                                                 </div>
                                                 <div class="EditC'.$value['idusuarios'].'" style="display:none;">
-                                                    <input type="text" class="form-control" value="'.$value['documento'].'" name="documentoPost">
+                                                    <input type="text" class="documento'.$value['idusuarios'].' form-control" value="'.$value['documento'].'" name="documentoPost">
                                                 </div>
                                             </td>
                                             <td>
@@ -101,7 +101,7 @@ $base = basename($url2);
                                                     '.$value['telefono'].'
                                                 </div>
                                                 <div class="EditC'.$value['idusuarios'].'" style="display:none;">
-                                                    <input type="text" class="form-control" value="'.$value['telefono'].'" name="TelefonoPost">
+                                                    <input type="text" class="telefono'.$value['idusuarios'].' form-control" value="'.$value['telefono'].'" name="TelefonoPost">
                                                 </div>
                                             </td>
                                             <td>
@@ -109,7 +109,7 @@ $base = basename($url2);
                                                     '.$value['premium'].'
                                                 </div>
                                                 <div class="EditC'.$value['idusuarios'].'" style="display:none;">
-                                                    <select class="form-control form-control-sm" name="premiumPost" style="padding:6px 12px; height:38px;">
+                                                    <select class="selectb'.$value['idusuarios'].' form-control form-control-sm" name="premiumPost" style="padding:6px 12px; height:38px;">
                                                         <option value="0">No</option>
                                                         <option value="1">Si</option>
                                                     </select>
@@ -132,7 +132,21 @@ $base = basename($url2);
                                                 });
 
                                                 $("#save'.$value['idusuarios'].'").click(function(){
-                                                    console.log("guardando usuario '.$value['idusuarios'].'");
+                                                    var Vnombre = $(".name'.$value['idusuarios'].'").val();
+                                                    var Vapellido = $(".apellido'.$value['idusuarios'].'").val();
+                                                    var Vselect = $(".select'.$value['idusuarios'].'").val();
+                                                    var Vcorreo = $(".correo'.$value['idusuarios'].'").val();
+                                                    var Vdocumento = $(".documento'.$value['idusuarios'].'").val();
+                                                    var Vtelefono = $(".telefono'.$value['idusuarios'].'").val();
+                                                    var Vselectb = $(".selectb'.$value['idusuarios'].'").val();
+                                                    $.ajax({
+                                                        method: "POST",
+                                                        url: "'.$url.'/updateuser",
+                                                        headers : {"nombre":Vnombre},
+                                                        success : function(data){
+                                                            console.log(data);
+                                                        }
+                                                    });
                                                 });
 
                                                 var contador = 1;
