@@ -159,16 +159,21 @@ function validasesion(){
 }
 
 function updateuser(){
-  $request    =   \Slim\Slim::getInstance()->request();
+  $request    =    \Slim\Slim::getInstance()->request();
   $data       =    json_decode($request->getBody());
+  $data       =    array(
+                        "id" => $data->id,
+                        "nombre"=> $data->nombre,
+                        "apellido"=> $data->apellido,
+                        "tipo"=> $data->tipo,
+                        "correo"=> $data->correo,
+                        "documento"=> $data->documento,
+                        "telefono"=> $data->telefono,
+                        "premium"=> $data->premium
+                      );
+  $updateUser =   usersController::updateUsers($data);
 
-  $nombre = $data->nombre;
-
-  $data = array(
-    'nombre'=>$nombre
-  );
-  var_dump($data);
-
+  echo $updateUser;
 
 }
 

@@ -27,7 +27,7 @@ $base = basename($url2);
                                             <div class="img-prod">
                                                 <img src="'.$url.'/r/desktop/img/products.png">
                                             </div>
-                                            <h4>'.$value['descripcion'].'</h4>
+                                            <h4>'.$value['nombre'].'</h4>
                                             <div class="produc-cont">
                                                 <p>
                                                 <button class="btn btn-primary">Editar</button>

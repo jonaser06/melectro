@@ -75,8 +75,8 @@ $base = basename($url2);
                                                 </div>
                                                 <div class="EditC'.$value['idusuarios'].'" style="display:none;">
                                                     <select class="select'.$value['idusuarios'].' form-control form-control-sm" name="tipoClientePost" style="padding:6px 12px; height:38px;">
-                                                        <option value="0">Cliente</option>
-                                                        <option value="1">Administrador</option>
+                                                        <option value="1">Cliente</option>
+                                                        <option value="2">Administrador</option>
                                                     </select>
                                                 </div>
                                             </td>
@@ -139,12 +139,13 @@ $base = basename($url2);
                                                     var Vdocumento = $(".documento'.$value['idusuarios'].'").val();
                                                     var Vtelefono = $(".telefono'.$value['idusuarios'].'").val();
                                                     var Vselectb = $(".selectb'.$value['idusuarios'].'").val();
+                                                    var json = {id:'.$value['idusuarios'].', nombre:Vnombre, apellido:Vapellido, tipo:Vselect, correo:Vcorreo, documento:Vdocumento, telefono:Vtelefono, premium:Vselectb};
                                                     $.ajax({
-                                                        method: "POST",
                                                         url: "'.$url.'/updateuser",
-                                                        headers : {"nombre":Vnombre},
-                                                        success : function(data){
-                                                            console.log(data);
+                                                        data : JSON.stringify(json),
+                                                        method: "POST",
+                                                        success : function(response){
+                                                            console.log(response);
                                                         }
                                                     });
                                                 });
