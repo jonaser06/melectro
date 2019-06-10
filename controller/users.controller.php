@@ -9,6 +9,16 @@ class usersController{
         $request = usersModel::UpdateUsermdl($data);
         return $request;
     }
+
+    public static function deleteUsers($id){
+        $request = usersModel::deleteUsermdl($id);
+        return $request;
+    }
+
+    public static function newUser($data){
+        $request = usersModel::newUsermdl($data);
+        return $request;
+    }
 }
 
 ?>

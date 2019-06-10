@@ -15,6 +15,8 @@ $app->get('/logout/','logout');
 
 $app->post('/validasesion/','validasesion');
 $app->post('/updateuser/','updateuser');
+$app->post('/deleteUser/','deleteUser');
+$app->post('/newUser/','newUser');
 
 
 function inicio(){
@@ -178,6 +180,31 @@ function updateuser(){
 
 }
 
+function deleteUser(){
+  $request    =    \Slim\Slim::getInstance()->request();
+  $data       =    json_decode($request->getBody());
+  $id = $data->id;
+  $updateUser =   usersController::deleteUsers($id);
+  echo $updateUser;
+}
+
+function newUser(){
+  $request    =    \Slim\Slim::getInstance()->request();
+  $data       =    json_decode($request->getBody());
+  $data       =    array(
+                        "nombre"=> $data->nombre,
+                        "apellido"=> $data->apellido,
+                        "tipo"=> $data->rol,
+                        "correo"=> $data->correo,
+                        "password"=> $data->password,
+                        "documento"=> $data->documento,
+                        "telefono"=> $data->telefono,
+                        "premium"=> 'no'
+                      );
+
+  $newUser =   usersController::newUser($data);
+  echo $newUser;
+}
 
 $app->run();
 

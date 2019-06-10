@@ -13,7 +13,68 @@ $base = basename($url2);
                         <div class="row roundstyle">
                             <div class="col-md-12 t-align">
                                 <p style="display:inline;"><span class="fa fa-users"></span>| Usuarios</p>
-                                <button class="boton-add">Agregar (+)</button>
+                                <input type="button" class="boton-add" data-toggle="modal" data-target="#AgregarUser" value="Agregar (+)">
+                                <!-- Modal -->
+                                <div class="modal fade" id="AgregarUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Usuario</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Nombres</p>
+                                                <input type="text" id="addnombre" class="form-control">
+                                                <p>Apellidos</p>
+                                                <input type="text" id="addapellidos" class="form-control">
+                                                <p>Correo</p>
+                                                <input type="email" id="addcorreo" class="form-control">
+                                                <p>Password</p>
+                                                <input type="password" id="addpass" class="form-control">
+                                                <p>Documento DNI/RUC</p>
+                                                <input type="text" id="adddoc" class="form-control">
+                                                <p>Telefono</p>
+                                                <input type="text" id="addtel" class="form-control">
+                                                <p>Rol</p>
+                                                <select id="addrol" class="form-control">
+                                                    <option value="1">cliente</option>
+                                                    <option value="2">administrador</option>
+                                                </select>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" id="addNewUser" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                                            </div>
+                                            <script>
+                                                $('#addNewUser').click(function(){
+                                                    var nombre = $('#addnombre').val();
+                                                    var apellido = $('#addapellidos').val();
+                                                    var correo = $('#addcorreo').val();
+                                                    var password = $('#addpass').val();
+                                                    var doc = $('#adddoc').val();
+                                                    var telefono = $('#addtel').val();
+                                                    var rol = $('#addrol').val();
+                                                    var json = {'nombre': nombre, 'apellido': apellido, 'correo': correo, 'password':password, 'documento':doc, 'telefono': telefono, 'rol': rol};
+                                                    $.ajax({
+                                                        <?php
+                                                            echo 'url: "'.$url.'/newUser", ';
+                                                        ?>
+                                                        data : JSON.stringify(json),
+                                                        method: "POST",
+                                                        success : function(response){
+                                                            toastr.success("Se ha agregado al usuario con exito", "Agregado!");
+                                                            setInterval(function(){
+                                                                location.reload();
+                                                            }, 1000);
+                                                        }
+                                                    });
+                                                });
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -141,15 +202,45 @@ $base = basename($url2);
                                                     <ul class="user-option">
                                                         <li><span id="edit'.$value['idusuarios'].'" class="editT'.$value['idusuarios'].' text-primary fa fa-pencil"></span></li>
                                                         <li><span id="save'.$value['idusuarios'].'" class="editT'.$value['idusuarios'].' text-success fa fa-check" style="display:none"></span></li>
-                                                        <li><span id="del'.$value['idusuarios'].'" class="text-danger fa fa-times"></span></li>
+                                                        <li><span class="text-danger fa fa-times" data-toggle="modal" data-target="#delModal'.$value['idusuarios'].'"></span></li>
                                                     </ul>
                                                 </td>
 
+                                                <!-- Modal de eliminacion de usuarios-->
+                                                <div class="modal fade" id="delModal'.$value['idusuarios'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Confirmar Acción</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Esta seguro que desea eliminar al usuario '.$value['nombres'].'
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="del'.$value['idusuarios'].'">Eliminar</button>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <script>
                                                     $("#del'.$value['idusuarios'].'").click(function(){
-                                                        if (confirm("Esta seguro que desea eliminar a este Usuario '.$value['idusuarios'].'")) {
-                                                            
-                                                        }
+                                                        var idusuarios = '.$value['idusuarios'].';
+                                                        var jsonid = {id: idusuarios};
+                                                        $.ajax({
+                                                            url: "'.$url.'/deleteUser",
+                                                            data : JSON.stringify(jsonid),
+                                                            method: "POST",
+                                                            success : function(response){
+                                                                toastr.success("Se ha actualizado con exito", "Update!");
+                                                                setInterval(function(){
+                                                                    location.reload();
+                                                                }, 1000);
+                                                            }
+                                                        });
                                                     });
 
                                                     $("#save'.$value['idusuarios'].'").click(function(){

@@ -16,6 +16,7 @@
     <?php
         echo '<script src="'.$url.'/r/desktop/js/jquery.js"></script>';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/bootstrap.css">';
+        echo '<script src="'.$url.'/r/desktop/js/bootstrap.min.js"></script>';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/font-awesome.min.css">';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/style.css">';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/products.css">';
@@ -23,5 +24,5 @@
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/toast.min.css">';
         echo '<script src="'.$url.'/r/desktop/js/toast.js"></script>';
     ?>
-    
+
 </head>
