@@ -13,6 +13,13 @@ $base = basename($url2);
                         <div class="col-md-12 t-align">
                             <p style="display:inline;"><span class="fa fa-shopping-cart"></span>| Productos</p>
                             <button class="boton-add">Agregar (+)</button>
+                            <?php
+                                echo '<script>
+                                        $(".boton-add").click(function(){
+                                            window.location = "'.$url.'/productos/add";
+                                        });
+                                    </script>';
+                            ?>
                         </div>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ $app->get('/app/','app');
 $app->get('/notification/','notification');
 $app->get('/productos/','productos');
 $app->get('/productos/add/','addproductos');
+$app->get('/productos/edit/:id','editproductos');
 $app->get('/users/','users');
 $app->get('/support/','support');
 $app->get('/login/','login');
@@ -69,6 +70,19 @@ function addproductos(){
   if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
     include 'modules/head.php';
     include 'modules/addproducto.php';
+    include 'modules/footer.php';
+  }else{
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
+  }
+}
+
+function editproductos($id){
+  session_start();
+  if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+    include 'modules/head.php';
+    include 'modules/editproducto.php';
     include 'modules/footer.php';
   }else{
     echo '<script type="text/javascript">

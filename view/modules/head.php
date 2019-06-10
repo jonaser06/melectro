@@ -23,6 +23,8 @@
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/users.css">';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/toast.min.css">';
         echo '<script src="'.$url.'/r/desktop/js/toast.js"></script>';
+        echo '<script src="'.$url.'/r/desktop/js/ckeditor.js"></script>';
     ?>
+    
 
 </head>
