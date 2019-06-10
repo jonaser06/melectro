@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2019 a las 19:27:10
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 7.2.7
+-- Tiempo de generación: 10-06-2019 a las 01:42:10
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -1056,7 +1056,7 @@ CREATE TABLE `usuarios` (
   `correo` varchar(100) NOT NULL,
   `password` varchar(200) NOT NULL,
   `documento` varchar(100) NOT NULL,
-  `telefono` int(50) NOT NULL,
+  `telefono` varchar(20) NOT NULL,
   `premium` varchar(10) NOT NULL,
   `estado` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1066,11 +1066,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuarios`, `nombres`, `apellidos`, `tipo`, `correo`, `password`, `documento`, `telefono`, `premium`, `estado`) VALUES
-(1, 'jonathan', 'narvaez', 3, 'jonaser06@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '47793117', 935142227, 'no', 1),
-(2, 'michael steve', 'giraldo castromonte', 1, 'msgiraldo.12@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '72203121', 915786101, 'no', 1),
-(3, 'oscar alberto', 'porles trigueros', 1, 'oskrporles93@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '70779822', 924771483, 'no', 0),
-(4, 'richard', 'nina paucara', 1, 'richardninap@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '40776870', 2147483647, 'no', 1),
-(5, 'jorge antonio', 'chavez quiroga', 1, 'jorgechavez@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '71897896', 941329646, 'no', 1);
+(1, 'jonathan', 'narvaez', 3, 'jonaser06@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '47793117', '935142227', 'no', 1),
+(2, 'michael steve', 'giraldo castromonte', 1, 'msgiraldo.12@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '72203121', '915786101', 'no', 1),
+(3, 'oscar alberto', 'porles trigueros', 1, 'oskrporles93@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '70779822', '924771483', 'no', 0),
+(4, 'richard', 'nina paucara', 1, 'richardninap@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '40776870', '2147483647', 'no', 1),
+(5, 'jorge antonio', 'chavez quiroga', 1, 'jorgechavez@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '71897896', '941329646', 'no', 1);
 
 -- --------------------------------------------------------
 

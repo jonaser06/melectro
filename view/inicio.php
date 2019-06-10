@@ -134,6 +134,7 @@ function validasesion(){
     if($decode['status'] =='true'){
         session_start();
         $_SESSION['LoginStatus']    =   'true';
+        $_SESSION['id']       =   $decode['data']['idusuarios'];
         $_SESSION['nombres']       =   $decode['data']['nombres'];
         $_SESSION['apellidos']       =   $decode['data']['apellidos'];
         $_SESSION['tipo']       =   $decode['data']['tipo'];

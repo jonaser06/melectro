@@ -17,23 +17,31 @@ class usersModel{
     public static function UpdateUsermdl($data){
         
         if($data['premium']=='0'){
-            $premium = 'No';
+            $premium = 'no';
         }
         if($data['premium']=='1'){
-            $premium = 'Si';
+            $premium = 'si';
         }
 
         try {
             $db         =   getDB();
             $sql        =  "UPDATE usuarios
-                            SET  nombres = 'a' WHERE idusuarios='".$data['id']."' ";
+                            SET
+                            nombres = '".$data['nombre']."',
+                            apellidos = '".$data['apellido']."',
+                            tipo = '".$data['tipo']."',
+                            correo = '".$data['correo']."',
+                            documento = '".$data['documento']."',
+                            telefono = '".$data['telefono']."',
+                            premium = '".$premium."'                             
+                            WHERE idusuarios='".$data['id']."' ";
             $stmt       =   $db->prepare($sql);
             $stmt->execute();
         } catch (PDOException $e) {
 
             $data = '[ { "error":"'.$e.'"}]';
         }
-        return $data;
+        return var_dump($data);
     }
 }
 
