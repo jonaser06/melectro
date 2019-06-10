@@ -8,6 +8,7 @@ $app->get('/admin/','admin');
 $app->get('/app/','app');
 $app->get('/notification/','notification');
 $app->get('/productos/','productos');
+$app->get('/productos/add/','addproductos');
 $app->get('/users/','users');
 $app->get('/support/','support');
 $app->get('/login/','login');
@@ -61,6 +62,19 @@ function productos(){
                   window.location = "login";
               </script>';
     }
+}
+
+function addproductos(){
+  session_start();
+  if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+    include 'modules/head.php';
+    include 'modules/addproducto.php';
+    include 'modules/footer.php';
+  }else{
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
+  }
 }
 
 function users(){
@@ -133,7 +147,7 @@ function validasesion(){
     $status = loginpage::signin();
     $decode = json_decode($status,true);
 
-    if($decode['status'] =='true'){
+    if($decode['status'] =='true' && ( $decode['data']['tipo']=='3' || $decode['data']['tipo']=='2')){
         session_start();
         $_SESSION['LoginStatus']    =   'true';
         $_SESSION['id']       =   $decode['data']['idusuarios'];
