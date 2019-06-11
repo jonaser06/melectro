@@ -23,7 +23,7 @@ $base = basename($url2);
                 <div class="bodybar" style="margin-top:50px;">
                     <div class="row">   
                        <div class="col-md-12" style="text-align:left;">
-                            <?php echo '<form action="'.$url.'/newUpload" method="POST">'; ?>
+                            <?php echo '<form action="'.$url.'/newUpload" method="POST" enctype="multipart/form-data">'; ?>
                                 <div class="row">
                                     <div class="col-md-7" style="padding:0px;">
                                         <div class="row">
@@ -36,12 +36,12 @@ $base = basename($url2);
                                                 <input type="text" id="addcode" class="form-control" name="codeProd"><br>
                                             </div>
                                             <div class="col-md-4" style="padding:0px;">
-                                                <p>Moneda:</p>
-                                                <input type="text" id="addnombre" class="form-control" name="" style="margin-bottom:10px;">
+                                                <p>Precio:</p>
+                                                <input type="text" id="addnombre" class="form-control" name="precioProd" style="margin-bottom:10px;">
                                             </div>
                                             <div class="col-md-8">
                                                 <p>UM:</p>
-                                                <select name="" id="" class="form-control">
+                                                <select name="umProd" id="" class="form-control">
                                                     <option value="BL">BALDE (BL)</option>
                                                     <option value="CJA">CAJA (CJA)</option>
                                                     <option value="CM">CENTIMETROS (CM)</option>
@@ -64,7 +64,7 @@ $base = basename($url2);
                                             <div class="col-md-12" style="padding-left:0px;">
                                                 <p>Descripcion:</p>
                                                 <!-- 0 Editor -->
-                                                <?php echo '<textarea rows="4" cols="80" class="form-control editor-txt" placeholder="Escriba aqui!" name="descripcionu" require>Hola Mundo</textarea>'; ?>
+                                                <?php echo '<textarea rows="4" cols="80" class="form-control editor-txt" name="descripcionProd" require></textarea>'; ?>
                                                 <!-- End Froala Editor -->
                                                 <script>
                                                     $('.editor-txt').summernote();

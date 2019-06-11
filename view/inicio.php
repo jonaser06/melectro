@@ -236,9 +236,23 @@ function newUser(){
 }
 
 function newUpload(){
-  $request    =    \Slim\Slim::getInstance()->request();
-  $data       =    json_decode($request->getBody());
-  echo 'Hola Mundo';
+  $codigo = $_POST['codeProd'];
+  $nombre = $_POST['nameProd'];
+  $descripcion = $_POST['descripcionProd'];
+  $imagen = $_FILES['image']['name'];
+  $um = $_POST['umProd'];
+  $precio = $_POST['precioProd'];
+
+  $data = array(
+              "codigo"=>$codigo,
+              "nombre"=>$nombre,
+              "descripcion"=>$descripcion,
+              "imagen"=>$imagen,
+              "um"=>$um,
+              "precio"=>$precio
+          );
+  echo json_encode($data);
+
 }
 
 $app->run();
