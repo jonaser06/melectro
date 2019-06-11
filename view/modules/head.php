@@ -16,16 +16,21 @@
     <?php
         echo '<script src="'.$url.'/r/desktop/js/jquery.js"></script>';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/bootstrap.css">';
-        echo '<script src="'.$url.'/r/desktop/js/bootstrap.min.js"></script>';
+        $array = explode("/",$url2);
+        if($array[5] == 'edit'){
+            echo '<script src="'.$url.'/r/desktop/js/bootstrap.3.3.5.js"></script>';
+        }else{
+            echo '<script src="'.$url.'/r/desktop/js/bootstrap.min.js"></script>';
+        }
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/font-awesome.min.css">';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/style.css">';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/products.css">';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/users.css">';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/toast.min.css">';
         echo '<script src="'.$url.'/r/desktop/js/toast.js"></script>';
+        echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/summernote.css">';
+        echo '<script src="'.$url.'/r/desktop/js/summernote.js"></script>';
+
     ?>
-    
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@3.0.0-rc.2/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@3.0.0-rc.2/js/froala_editor.pkgd.min.js"></script>
 
 </head>

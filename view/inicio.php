@@ -19,6 +19,7 @@ $app->post('/validasesion/','validasesion');
 $app->post('/updateuser/','updateuser');
 $app->post('/deleteUser/','deleteUser');
 $app->post('/newUser/','newUser');
+$app->post('/newUpload/','newUpload');
 
 
 function inicio(){
@@ -232,6 +233,11 @@ function newUser(){
 
   $newUser =   usersController::newUser($data);
   echo $newUser;
+}
+
+function newUpload(){
+  $request    =    \Slim\Slim::getInstance()->request();
+  $data       =    json_decode($request->getBody());
 }
 
 $app->run();

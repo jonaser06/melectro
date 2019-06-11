@@ -23,29 +23,24 @@ $base = basename($url2);
                                         <div class="row">
                                             <div class="col-md-6" style="padding:0px;">
                                                 <p>Nombre de producto:</p>
-                                                <input type="text" id="addnombre" class="form-control">
+                                                <input type="text" id="addname" class="form-control">
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Codigo:</p>
-                                                <input type="text" id="addnombre" class="form-control"><br>
+                                                <input type="text" id="addcode" class="form-control"><br>
                                             </div>
                                             <div class="col-md-12" style="padding-left:0px;">
-                                                <p>Codigo:</p>
-                                                <!-- Froala Editor -->
-                                                <div id="example">
-                                                
-                                                </div>
+                                                <p>Descripcion:</p>
+                                                <!-- 0 Editor -->
+                                                <?php echo '<textarea rows="4" cols="80" class="form-control editor-txt" placeholder="Escriba aqui!" name="descripcionu" require>Hola Mundo</textarea>'; ?>
                                                 <!-- End Froala Editor -->
                                                 <script>
-                                                    (function () {
-                                                    new FroalaEditor("#example")
-                                                    })()
+                                                    $('.editor-txt').summernote();
+                                                    $(document).ready(function(){
+                                                        $('.fr-wrapper').removeClass('show-placeholder');
+                                                        $('.fr-element').html('<p>Hola prro</p>');
+                                                    });
                                                 </script>
-                                                <style>
-                                                    #logo{
-                                                        display:none;
-                                                    }
-                                                </style>
                                             </div>
                                         </div>
                                     </div>
@@ -53,11 +48,11 @@ $base = basename($url2);
                                         <div class="row">
                                             <div class="col-md-10 ml-auto" style="padding:0px;">
                                                 <p>Moneda:</p>
-                                                <input type="text" id="addnombre" class="form-control">
+                                                <input type="text" id="addnombre" class="form-control" style="margin-bottom:10px;">
                                                 <p>UM:</p>
-                                                <input type="text" id="addnombre" class="form-control">
+                                                <input type="text" id="addnombre" class="form-control" style="margin-bottom:10px;">
                                                 <p>Presentación:</p>
-                                                <input type="text" id="addnombre" class="form-control">
+                                                <input type="text" id="addnombre" class="form-control" style="margin-bottom:10px;">
                                             </div>
                                         </div>
                                         <div class="option-product">
