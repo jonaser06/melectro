@@ -29,15 +29,15 @@ $base = basename($url2);
                                         <div class="row">
                                             <div class="col-md-6" style="padding:0px;">
                                                 <p>Nombre de producto:</p>
-                                                <input type="text" id="addname" class="form-control">
+                                                <input type="text" id="addname" class="form-control" name="nameProd">
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Codigo:</p>
-                                                <input type="text" id="addcode" class="form-control"><br>
+                                                <input type="text" id="addcode" class="form-control" name="codeProd"><br>
                                             </div>
                                             <div class="col-md-4" style="padding:0px;">
                                                 <p>Moneda:</p>
-                                                <input type="text" id="addnombre" class="form-control" style="margin-bottom:10px;">
+                                                <input type="text" id="addnombre" class="form-control" name="" style="margin-bottom:10px;">
                                             </div>
                                             <div class="col-md-8">
                                                 <p>UM:</p>
