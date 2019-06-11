@@ -238,6 +238,7 @@ function newUser(){
 function newUpload(){
   $request    =    \Slim\Slim::getInstance()->request();
   $data       =    json_decode($request->getBody());
+  echo 'Hola Mundo';
 }
 
 $app->run();

@@ -39,6 +39,7 @@
 .contenido {
     text-align: center;
     background: rgb(245, 245, 246);
+    padding-bottom: 50px;
 }
 .prodcontent{
     display: inline-block;
