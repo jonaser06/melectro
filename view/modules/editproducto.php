@@ -27,16 +27,25 @@ $base = basename($url2);
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Codigo:</p>
-                                                <input type="text" id="addnombre" class="form-control">
+                                                <input type="text" id="addnombre" class="form-control"><br>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-12" style="padding-left:0px;">
                                                 <p>Codigo:</p>
-                                                <textarea name="editor1" id="editor1" rows="10" cols="80">
-                                                    This is my textarea to be replaced with CKEditor.
-                                                </textarea>
+                                                <!-- Froala Editor -->
+                                                <div id="example">
+                                                
+                                                </div>
+                                                <!-- End Froala Editor -->
                                                 <script>
-                                                    CKEDITOR.replace( 'editor1' );
+                                                    (function () {
+                                                    new FroalaEditor("#example")
+                                                    })()
                                                 </script>
+                                                <style>
+                                                    #logo{
+                                                        display:none;
+                                                    }
+                                                </style>
                                             </div>
                                         </div>
                                     </div>
