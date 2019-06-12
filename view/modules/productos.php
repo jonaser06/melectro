@@ -32,7 +32,7 @@ $base = basename($url2);
                                 echo '<div class="col-md-3 col-12 col-sm-6">
                                         <div class="item-products">
                                             <div class="img-prod">
-                                                <img src="'.$url.'/r/desktop/img/products.png">
+                                                <img src="'.$url.'/r/desktop/img/product.png">
                                             </div>
                                             <h4>'.$value['nombre'].'</h4>
                                             <div class="produc-cont">
