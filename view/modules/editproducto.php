@@ -114,11 +114,11 @@ $base = basename($url2);
                                                     }
                                                 </style>
                                                 <p>Presentación:</p>
-                                                <input type="text" id="addnombre" class="form-control" style="margin-bottom:10px;">
+                                                <input type="text" id="addnombre" class="form-control" style="margin-bottom:10px;" name="presProd">
                                             </div>
                                         </div>
                                         <div class="option-product">
-                                            <input type="submit" id="publicar" class="boton-add" value="Guardar">
+                                            <input type="submit" id="publicar" class="boton-add" value="Guardar" name="btn-save">
                                             <input type="button" id="cancelar" class="boton-add" value="Cancelar">
                                         </div>
                                     </div>

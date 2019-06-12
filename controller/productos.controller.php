@@ -6,5 +6,10 @@
             $productos = Mproducts::productsModel();
             return $productos;
         }
+
+        public static function addProduct($data){
+            $add = Mproducts::addProductmdl($data);
+            return $add;
+        }
     }
 ?>

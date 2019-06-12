@@ -18,7 +18,7 @@
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/bootstrap.css">';
         
         $array = explode("/",$url2);
-        if($array[5] == 'edit'){
+        if($array[5] == 'add'){
             echo '<script src="'.$url.'/r/desktop/js/bootstrap.3.3.5.js"></script>';
         }else{
             echo '<script src="'.$url.'/r/desktop/js/bootstrap.min.js"></script>';

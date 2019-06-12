@@ -1,6 +1,7 @@
 <?php
 /* dependences */
 require_once "vendor/autoload.php";
+require_once "r/upload/upload.php";
 /* Controllers */
 require_once 'controller/home.controller.php';
 require_once 'controller/login.controller.php';

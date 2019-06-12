@@ -20,6 +20,7 @@ $app->post('/updateuser/','updateuser');
 $app->post('/deleteUser/','deleteUser');
 $app->post('/newUser/','newUser');
 $app->post('/newUpload/','newUpload');
+$app->post('/updateProduct/','updateProduct');
 
 
 function inicio(){
@@ -59,6 +60,17 @@ function productos(){
       include 'modules/head.php';
       include 'modules/productos.php';
       include 'modules/footer.php';
+      if($_GET['status']=='true'){
+        echo '<script>
+                toastr.success("'.$_GET['message'].'", "Estado");
+              </script>';
+      }
+      if($_GET['status']=='false'){
+        echo '<script>
+                toastr.error("'.$_GET['message'].'", "Estado");
+              </script>';
+      }
+      
     }else{
       echo '<script type="text/javascript">
                   window.location = "login";
@@ -236,23 +248,84 @@ function newUser(){
 }
 
 function newUpload(){
-  $codigo = $_POST['codeProd'];
-  $nombre = $_POST['nameProd'];
-  $descripcion = $_POST['descripcionProd'];
-  $imagen = $_FILES['image']['name'];
-  $um = $_POST['umProd'];
-  $precio = $_POST['precioProd'];
 
-  $data = array(
-              "codigo"=>$codigo,
-              "nombre"=>$nombre,
-              "descripcion"=>$descripcion,
-              "imagen"=>$imagen,
-              "um"=>$um,
-              "precio"=>$precio
-          );
-  echo json_encode($data);
+  if(isset($_POST['btn-save'])){
 
+    if($_POST['codeProd'] && $_POST['nameProd'] && $_POST['descripcionProd'] && $_POST['umProd'] && $_POST['precioProd'] && $_POST['presProd']){
+      $codigo = $_POST['codeProd'];
+      $nombre = $_POST['nameProd'];
+      $descripcion = $_POST['descripcionProd'];
+      $um = $_POST['umProd'];
+      $precio = $_POST['precioProd'];
+      $prest = $_POST['presProd'];
+      
+      $nameImg = $_FILES['image']['name'];
+
+      $data = array(
+        "codigo"=>$codigo,
+        "nombre"=>$nombre,
+        "descripcion"=>$descripcion,
+        "imagen"=>$nameImg,
+        "um"=>$um,
+        "precio"=>$precio,
+        "prest"=>$prest,
+      );
+
+      $upload = uploadImage($_FILES['image']['tmp_name'], $nameImg);
+      /* mandamos la data para la insersion en la bd */
+      $addbd = products::addProduct($data);
+      echo '<script type="text/javascript">
+            window.location = "productos?status=true&message='.$upload.'";
+          </script>';
+    }else{
+      echo '<script type="text/javascript">
+            window.location = "productos?status=false&message=Revice que ha llenado todos los campos";
+          </script>';
+    }
+
+  }else{
+    
+  }
+}
+
+function updateProduct(){
+  if(isset($_POST['btn-save'])){
+
+    if($_POST['codeProd'] && $_POST['nameProd'] && $_POST['descripcionProd'] && $_POST['umProd'] && $_POST['precioProd'] && $_POST['presProd']){
+      $codigo = $_POST['codeProd'];
+      $nombre = $_POST['nameProd'];
+      $descripcion = $_POST['descripcionProd'];
+      $um = $_POST['umProd'];
+      $precio = $_POST['precioProd'];
+      $prest = $_POST['presProd'];
+      
+      $nameImg = $_FILES['image']['name'];
+
+      $data = array(
+        "codigo"=>$codigo,
+        "nombre"=>$nombre,
+        "descripcion"=>$descripcion,
+        "imagen"=>$nameImg,
+        "um"=>$um,
+        "precio"=>$precio,
+        "prest"=>$prest,
+      );
+
+      $upload = uploadImage($_FILES['image']['tmp_name'], $nameImg);
+      /* mandamos la data para la insersion en la bd */
+      $addbd = products::addProduct($data);
+      echo '<script type="text/javascript">
+            window.location = "productos?status=true&message='.$upload.'";
+          </script>';
+    }else{
+      echo '<script type="text/javascript">
+            window.location = "productos?status=false&message=Revice que ha llenado todos los campos";
+          </script>';
+    }
+
+  }else{
+    
+  }
 }
 
 $app->run();

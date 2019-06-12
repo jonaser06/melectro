@@ -15,5 +15,21 @@
             return $data;
         }
 
+        public static function addProductmdl($data){
+            try{
+                $db         =   getDB();
+                $sql = "INSERT INTO productos 
+                        (idproducto, codigo, nombre, descripcion, imagen, um, presentacion, precio, moneda, igv) 
+                        VALUES
+                        (NULL, '".$data['codigo']."','".$data['nombre']."','".$data['descripcion']."','".$data['imagen']."','".$data['um']."','".$data['prest']."','".$data['precio']."','MN','NO')";
+                $stmt = $db->prepare($sql);
+                $stmt->execute();
+                $db = null;
+                
+            }catch (PDOException $e){
+                echo $e;
+            }
+        }
+
     }
 ?>
