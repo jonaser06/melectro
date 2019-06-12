@@ -4,7 +4,7 @@
         public static function productsModel(){
             try {
                 $db         =   getDB();
-                $sql        =   "SELECT * FROM productos ORDER BY RAND() LIMIT 20";
+                $sql        =   "SELECT * FROM productos LIMIT 20";
                 $stmt       =   $db->prepare($sql);
                 $stmt->execute();
                 $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -65,6 +65,19 @@
                 echo $e;
             }
             return $data;
+        }
+
+        public static function deleteProductmdl($id){
+            try {
+                $db         =   getDB();
+                $sql        =  "DELETE FROM productos WHERE idproducto='".$id."' ";
+                $stmt       =   $db->prepare($sql);
+                $stmt->execute();
+                $db = null;
+            } catch (PDOException $e) {
+                $data = '[ { "error":"'.$e.'"}]';
+            }
+            return $id;
         }
 
     }

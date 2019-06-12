@@ -13,7 +13,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-6 logo-login">
+                    <div class="col-md-6 logo-login" style="position:relative;">
                         <div class="img-container">
                             <?php
                                 echo '<img src="'.$url.'/r/desktop/img/logo-mega.png" alt="">';

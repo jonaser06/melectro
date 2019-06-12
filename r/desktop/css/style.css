@@ -26,11 +26,13 @@ body{
     text-align: center;
 }
 .img-container{
-    display: inline-block;
     width: 50%;
     border-radius: 20px;
     overflow: hidden;
-    margin-top: 5%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .img-container img{
     width: 100%;

@@ -18,6 +18,7 @@ $app->get('/logout/','logout');
 $app->post('/validasesion/','validasesion');
 $app->post('/updateuser/','updateuser');
 $app->post('/deleteUser/','deleteUser');
+$app->post('/deleteProducto/','deleteProducto');
 $app->post('/newUser/','newUser');
 $app->post('/newUpload/','newUpload');
 $app->post('/updateProduct/','updateProduct');
@@ -227,6 +228,14 @@ function deleteUser(){
   $data       =    json_decode($request->getBody());
   $id = $data->id;
   $updateUser =   usersController::deleteUsers($id);
+  echo $updateUser;
+}
+
+function deleteProducto(){
+  $request    =    \Slim\Slim::getInstance()->request();
+  $data       =    json_decode($request->getBody());
+  $id = $data->id;
+  $updateUser =   products::deleteProduct($id);
   echo $updateUser;
 }
 

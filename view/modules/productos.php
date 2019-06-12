@@ -37,19 +37,51 @@ $base = basename($url2);
                                             <h4>'.$value['nombre'].'</h4>
                                             <div class="produc-cont">
                                                 <p>
-                                                <button id="editar'.$value['idproducto'].'" class="btn btn-primary">Editar</button>
-                                                <button class="btn btn-danger">Borrar</button><br>
+                                                <a href="'.$url.'/productos/edit/'.$value['idproducto'].'" class="btn btn-primary">Editar</a>
+                                                <button class="btn btn-danger" data-toggle="modal" data-target="#delModal'.$value['idproducto'].'">Borrar</button><br>
                                                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                                 </p>
-                                                <script>
-                                                    $("#editar'.$value['idproducto'].'").click(function(){
-                                                        window.location = "'.$url.'/productos/edit/'.$value['idproducto'].'";
-                                                    });
-                                                </script>
                                             </div>
                                             <h4>S/. '.$value['precio'].'</h4>
                                         </div> 
-                                    </div>';
+                                    </div>
+                                    <!-- Modal de eliminacion de usuarios-->
+                                    <div class="modal fade" id="delModal'.$value['idproducto'].'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Confirmar Acción</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Esta seguro que desea eliminar el producto <br><b>'.$value['nombre'].'</b>?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal" id="del'.$value['idproducto'].'">Eliminar</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $("#del'.$value['idproducto'].'").click(function(){
+                                            var idproducto = '.$value['idproducto'].';
+                                            var jsonid = {id: idproducto};
+                                            $.ajax({
+                                                url: "'.$url.'/deleteProducto",
+                                                data : JSON.stringify(jsonid),
+                                                method: "POST",
+                                                success : function(response){
+                                                    toastr.success("Se ha eliminado con exito", "Eliminado!");
+                                                    setInterval(function(){
+                                                        location.reload();
+                                                    }, 1000);
+                                                }
+                                            });
+                                        });
+                                    </script>';
                             }
                         ?>
                         <!-- <div class="col-md-3">

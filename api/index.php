@@ -22,6 +22,7 @@ $app->post('/signup','signup');
 
 /**GET */
 $app->get('/productos/all/','productos');
+$app->get('/productos/:id','productosid');
 
 
 /* Funciones definidas */
@@ -136,7 +137,22 @@ function productos(){
         $stmt       =   $db->prepare($sql);
         $stmt->execute();
         $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
+        
         echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
+    } catch (PDOException $e) {
+        echo '[ { "error":"'.$e.'"}]';
+    }
+}
+
+function productosid($id){
+    try {
+        $db         =   getDB();
+        $sql        =   "SELECT * FROM productos WHERE idproducto = '".$id."'";
+        $stmt       =   $db->prepare($sql);
+        $stmt->execute();
+        $resultado  =   $stmt->fetch(PDO::FETCH_OBJ);
+        header('Content-Type: application/json');
+        print_r(json_encode($resultado,JSON_UNESCAPED_UNICODE));
     } catch (PDOException $e) {
         echo '[ { "error":"'.$e.'"}]';
     }
