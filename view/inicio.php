@@ -94,6 +94,7 @@ function addproductos(){
 function editproductos($id){
   session_start();
   if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+    $product = products::getProductByID($id);
     include 'modules/head.php';
     include 'modules/editproducto.php';
     include 'modules/footer.php';
@@ -251,7 +252,7 @@ function newUpload(){
 
   if(isset($_POST['btn-save'])){
 
-    if($_POST['codeProd'] && $_POST['nameProd'] && $_POST['descripcionProd'] && $_POST['umProd'] && $_POST['precioProd'] && $_POST['presProd']){
+    if($_POST['codeProd'] && $_POST['nameProd'] && $_POST['descripcionProd'] && $_POST['umProd'] && $_POST['precioProd']){
       $codigo = $_POST['codeProd'];
       $nombre = $_POST['nameProd'];
       $descripcion = $_POST['descripcionProd'];
@@ -268,7 +269,7 @@ function newUpload(){
         "imagen"=>$nameImg,
         "um"=>$um,
         "precio"=>$precio,
-        "prest"=>$prest,
+        "prest"=>$prest
       );
 
       $upload = uploadImage($_FILES['image']['tmp_name'], $nameImg);
@@ -289,37 +290,40 @@ function newUpload(){
 }
 
 function updateProduct(){
+  
   if(isset($_POST['btn-save'])){
 
-    if($_POST['codeProd'] && $_POST['nameProd'] && $_POST['descripcionProd'] && $_POST['umProd'] && $_POST['precioProd'] && $_POST['presProd']){
+    if($_POST['codeProd'] && $_POST['nameProd'] && $_POST['descripcionProd'] && $_POST['umProd'] && $_POST['precioProd']){
+      $id = $_POST['prodId'];
       $codigo = $_POST['codeProd'];
       $nombre = $_POST['nameProd'];
       $descripcion = $_POST['descripcionProd'];
       $um = $_POST['umProd'];
       $precio = $_POST['precioProd'];
       $prest = $_POST['presProd'];
-      
+
       $nameImg = $_FILES['image']['name'];
 
       $data = array(
+        "id" => $id,
         "codigo"=>$codigo,
         "nombre"=>$nombre,
         "descripcion"=>$descripcion,
         "imagen"=>$nameImg,
         "um"=>$um,
         "precio"=>$precio,
-        "prest"=>$prest,
+        "prest"=>$prest
       );
 
       $upload = uploadImage($_FILES['image']['tmp_name'], $nameImg);
       /* mandamos la data para la insersion en la bd */
-      $addbd = products::addProduct($data);
+      $addbd = products::updateProductctrl($data);
       echo '<script type="text/javascript">
             window.location = "productos?status=true&message='.$upload.'";
           </script>';
     }else{
       echo '<script type="text/javascript">
-            window.location = "productos?status=false&message=Revice que ha llenado todos los campos";
+            window.location = "productos?status=false&message=a '.var_dump($data).'";
           </script>';
     }
 

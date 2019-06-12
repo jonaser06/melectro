@@ -9,6 +9,7 @@ class usersModel{
             $stmt->execute();
             $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
             $data = json_encode($resultado, JSON_UNESCAPED_UNICODE);
+            $db = null;
         } catch (PDOException $e) {
             $data = '[ { "error":"'.$e.'"}]';
         }
@@ -37,6 +38,7 @@ class usersModel{
                             WHERE idusuarios='".$data['id']."' ";
             $stmt       =   $db->prepare($sql);
             $stmt->execute();
+            $db = null;
         } catch (PDOException $e) {
 
             $data = '[ { "error":"'.$e.'"}]';
@@ -49,6 +51,7 @@ class usersModel{
             $sql        =  "DELETE FROM usuarios WHERE idusuarios='".$id."' ";
             $stmt       =   $db->prepare($sql);
             $stmt->execute();
+            $db = null;
         } catch (PDOException $e) {
             $data = '[ { "error":"'.$e.'"}]';
         }

@@ -37,10 +37,15 @@ $base = basename($url2);
                                             <h4>'.$value['nombre'].'</h4>
                                             <div class="produc-cont">
                                                 <p>
-                                                <button class="btn btn-primary">Editar</button>
+                                                <button id="editar'.$value['idproducto'].'" class="btn btn-primary">Editar</button>
                                                 <button class="btn btn-danger">Borrar</button><br>
                                                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                                 </p>
+                                                <script>
+                                                    $("#editar'.$value['idproducto'].'").click(function(){
+                                                        window.location = "'.$url.'/productos/edit/'.$value['idproducto'].'";
+                                                    });
+                                                </script>
                                             </div>
                                             <h4>S/. '.$value['precio'].'</h4>
                                         </div> 

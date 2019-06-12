@@ -16,9 +16,8 @@
     <?php
         echo '<script src="'.$url.'/r/desktop/js/jquery.js"></script>';
         echo '<link rel="stylesheet" href="'.$url.'/r/desktop/css/bootstrap.css">';
-        
         $array = explode("/",$url2);
-        if($array[5] == 'add'){
+        if($array[5] == 'add' || $array[5] == 'edit'){
             echo '<script src="'.$url.'/r/desktop/js/bootstrap.3.3.5.js"></script>';
         }else{
             echo '<script src="'.$url.'/r/desktop/js/bootstrap.min.js"></script>';

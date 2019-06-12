@@ -29,15 +29,15 @@ $base = basename($url2);
                                         <div class="row">
                                             <div class="col-md-6" style="padding:0px;">
                                                 <p>Nombre de producto:</p>
-                                                <input type="text" id="addname" class="form-control" name="nameProd">
+                                                <input autocomplete="off" type="text" id="addname" class="form-control" name="nameProd">
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Codigo:</p>
-                                                <input type="text" id="addcode" class="form-control" name="codeProd"><br>
+                                                <input autocomplete="off" type="text" id="addcode" class="form-control" name="codeProd"><br>
                                             </div>
                                             <div class="col-md-4" style="padding:0px;">
                                                 <p>Precio:</p>
-                                                <input type="text" id="addnombre" class="form-control" name="precioProd" style="margin-bottom:10px;">
+                                                <input autocomplete="off" type="text" id="addnombre" class="form-control" name="precioProd" style="margin-bottom:10px;">
                                             </div>
                                             <div class="col-md-8">
                                                 <p>UM:</p>
@@ -82,7 +82,7 @@ $base = basename($url2);
                                                 <p>Imagen:</p>
                                                 <div id="render" class="imgpreview" style="border: 1px solid #ccc; width: 100%; height:10px; margin-bottom:10px;">
                                                 </div>
-                                                <input id="file" type="file" class="form-control-file edit-img" name="image">
+                                                <input autocomplete="off" id="file" type="file" class="form-control-file edit-img" name="image">
                                                 <script>
                                                     document.getElementById("file").onchange = function(e) {
                                                         // Creamos el objeto de la clase FileReader
@@ -114,7 +114,7 @@ $base = basename($url2);
                                                     }
                                                 </style>
                                                 <p>Presentación:</p>
-                                                <input type="text" id="addnombre" class="form-control" style="margin-bottom:10px;" name="presProd">
+                                                <input autocomplete="off" type="text" id="addnombre" class="form-control" style="margin-bottom:10px;" name="presProd">
                                             </div>
                                         </div>
                                         <div class="option-product">
