@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+
 /**
  * Proyecto : Api para melectro
  * Autor    : Jonathan Sergio Narvaez Cuenca
@@ -23,6 +23,19 @@ $app->post('/signup','signup');
 /**GET */
 $app->get('/productos/all/','productos');
 $app->get('/productos/:id','productosid');
+$app->post('/comprar','comprar');
+
+
+/* nueva compra */
+function comprar(){
+    $request    =   \Slim\Slim::getInstance()->request();
+    $data       =    json_decode($request->getBody());
+    $idusuario   = $data->usuarios;
+    $idproducto  = $data->idproducto;
+    $cantidad    = $data->cantidad;
+    echo '{"insertaridusuario":"'.$idusuario.'","insertardetalleidproducto":"'.$idproducto.'","lacantidad":"'.$cantidad.'"}';
+
+}
 
 
 /* Funciones definidas */
