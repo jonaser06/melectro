@@ -32,7 +32,7 @@ function historial($id){
         $db         =   getDB();
         $userData   =   '';
         $sql        =   "SELECT
-                        productos.nombre, productos.precio, detalles.cantidad
+                        productos.nombre, productos.precio, detalles.cantidad, productos.imagen
                         FROM detalles
                         INNER JOIN ventas
                         ON detalles.idventas = ventas.idventas
@@ -57,18 +57,15 @@ function historial($id){
 function comprar(){
     $request    =   \Slim\Slim::getInstance()->request();
     $data       =    json_decode($request->getBody());
-    $idusuario   = $data->idusuario;
-    $idproducto  = $data->idproducto;
-    $cantidad    = $data->cantidad;
     
     try {
         /* 1ra consulta */
         /* Insertando el id de usuario */
         $db      =  getDB();
         $sql     =  "INSERT INTO ventas
-                     (idventas, idusuarios, fecha)
-                     VALUES 
-                     (NULL,'".$idusuario."', NOW())";
+                    (idventas, idusuarios, fecha)
+                    VALUES 
+                    (NULL,'".$data->idusuario."', NOW())";
         $stmt    = $db->prepare($sql);
         $stmt->execute();
 
@@ -80,17 +77,41 @@ function comprar(){
         $resultado  =   $stmt->fetch(PDO::FETCH_OBJ);
         $id   = $resultado->idventas;
 
-        /* 3ra consulta */
-        /* insertando a detalle */
+        foreach ($data->detalle as $key => $value) {
+            /* 3ra consulta */
+            /* insertando a detalle */
 
-        $db      =  getDB();
-        $sql     =  "INSERT INTO detalles
-                     (iddetalles, idventas, idproducto, cantidad)
-                     VALUES 
-                     (NULL,'".$id."', '".$idproducto."', '".$cantidad."')";
-        $stmt    = $db->prepare($sql);
+            $db      =  getDB();
+            $sql3     =  "INSERT INTO detalles
+                        (iddetalles, idventas, idproducto, cantidad)
+                        VALUES 
+                        (NULL,'".$id."', '".$value->idproducto."', '".$value->cantidad."')";
+            $stmt    = $db->prepare($sql3);
+            $stmt->execute();
+        }
+        /* envio de email */
+        $sql4 = "SELECT * FROM usuarios WHERE idusuarios ='".$data->idusuario."' ";
+        $stmt = $db->prepare($sql4);
         $stmt->execute();
-        echo '{"status":"success","message":"Compra exitosa!","data":""}';
+        $resultado  =   $stmt->fetch(PDO::FETCH_OBJ);
+
+        $nombre   = $resultado->nombres;
+        $apellido = $resultado->apellidos;
+
+        $para   = $resultado->correo;
+        $titulo = 'Confirmacion de Pedido';
+        ob_start();
+        include "template-email.php";
+        $mensaje = ob_get_contents();
+        ob_end_clean();
+
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";   
+        $cabeceras .= 'From: Recordatorio <mail@servidormail.com>' . "\r\n";    
+        $bolEnviar=mail($para, $titulo, $mensaje, $cabeceras);
+
+
+        echo '{"status":"success","message":"Compra exitosa!","data":"Mensaje enviado"}';
 
     } catch (PDOException $e) {
         echo '{"status":"false","data":'. $e->getMessage() .'}';
@@ -207,7 +228,7 @@ function login() {
 function productos(){
     try {
         $db         =   getDB();
-        $sql        =   "SELECT * FROM productos ORDER BY RAND() LIMIT 20";
+        $sql        =   "SELECT * FROM productos WHERE imagen != '' ORDER BY RAND() LIMIT 20";
         $stmt       =   $db->prepare($sql);
         $stmt->execute();
         $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
