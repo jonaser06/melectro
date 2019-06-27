@@ -19,21 +19,82 @@ $app = new \Slim\Slim();
 /**POST */
 $app->post('/login','login');
 $app->post('/signup','signup');
+$app->post('/comprar','comprar');
 
 /**GET */
 $app->get('/productos/all/','productos');
 $app->get('/productos/:id','productosid');
-$app->post('/comprar','comprar');
+$app->get('/historial/:id','historial');
 
 
+function historial($id){
+    try {
+        $db         =   getDB();
+        $userData   =   '';
+        $sql        =   "SELECT
+                        productos.nombre, productos.precio, detalles.cantidad
+                        FROM detalles
+                        INNER JOIN ventas
+                        ON detalles.idventas = ventas.idventas
+                        INNER JOIN productos
+                        ON detalles.idproducto = productos.idproducto
+                        INNER JOIN usuarios
+                        ON ventas.idusuarios = usuarios.idusuarios
+                        WHERE usuarios.idusuarios = '".$id."' ";
+        $stmt       =   $db->prepare($sql);
+        $stmt->execute();
+        $mainCount  =   $stmt->rowCount();
+        $userData   =   $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        echo json_encode($userData);
+
+    } catch (PDOException $e) {
+        echo '{"status":"false","data":'. $e->getMessage() .'}';
+    }
+    
+}
 /* nueva compra */
 function comprar(){
     $request    =   \Slim\Slim::getInstance()->request();
     $data       =    json_decode($request->getBody());
-    $idusuario   = $data->usuarios;
+    $idusuario   = $data->idusuario;
     $idproducto  = $data->idproducto;
     $cantidad    = $data->cantidad;
-    echo '{"insertaridusuario":"'.$idusuario.'","insertardetalleidproducto":"'.$idproducto.'","lacantidad":"'.$cantidad.'"}';
+    
+    try {
+        /* 1ra consulta */
+        /* Insertando el id de usuario */
+        $db      =  getDB();
+        $sql     =  "INSERT INTO ventas
+                     (idventas, idusuarios, fecha)
+                     VALUES 
+                     (NULL,'".$idusuario."', NOW())";
+        $stmt    = $db->prepare($sql);
+        $stmt->execute();
+
+        /* 2da consulta */
+        /* devolviendo el ultimo id insertado en la tabla */
+        $sql2 = "SELECT idventas FROM ventas ORDER BY idventas DESC LIMIT 1";
+        $stmt = $db->prepare($sql2);
+        $stmt->execute();
+        $resultado  =   $stmt->fetch(PDO::FETCH_OBJ);
+        $id   = $resultado->idventas;
+
+        /* 3ra consulta */
+        /* insertando a detalle */
+
+        $db      =  getDB();
+        $sql     =  "INSERT INTO detalles
+                     (iddetalles, idventas, idproducto, cantidad)
+                     VALUES 
+                     (NULL,'".$id."', '".$idproducto."', '".$cantidad."')";
+        $stmt    = $db->prepare($sql);
+        $stmt->execute();
+        echo '{"status":"success","message":"Compra exitosa!","data":""}';
+
+    } catch (PDOException $e) {
+        echo '{"status":"false","data":'. $e->getMessage() .'}';
+    }
 
 }
 
