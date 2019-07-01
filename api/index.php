@@ -25,14 +25,16 @@ $app->post('/comprar','comprar');
 $app->get('/productos/all/','productos');
 $app->get('/productos/:id','productosid');
 $app->get('/historial/:id','historial');
+$app->get('/historialunit/:id/:producto','historialunit');
 
 
 function historial($id){
+    $url = 'http://localhost/melectro/';
     try {
         $db         =   getDB();
         $userData   =   '';
         $sql        =   "SELECT
-                        productos.nombre, productos.precio, detalles.cantidad, productos.imagen
+                        productos.idproducto, productos.nombre, detalles.precio, detalles.cantidad, detalles.idestado_pedido, productos.imagen
                         FROM detalles
                         INNER JOIN ventas
                         ON detalles.idventas = ventas.idventas
@@ -45,6 +47,40 @@ function historial($id){
         $stmt->execute();
         $mainCount  =   $stmt->rowCount();
         $userData   =   $stmt->fetchAll(PDO::FETCH_OBJ);
+        foreach ($userData as $key => $value) {
+            $value->imagen = $url.$value->imagen;
+        }
+
+        echo json_encode($userData);
+
+    } catch (PDOException $e) {
+        echo '{"status":"false","data":'. $e->getMessage() .'}';
+    }
+    
+}
+
+function historialunit($id,$producto){
+    $url = 'http://localhost/melectro/';
+    try {
+        $db         =   getDB();
+        $userData   =   '';
+        $sql        =   "SELECT
+                        productos.idproducto, productos.nombre, productos.precio, detalles.cantidad, detalles.idestado_pedido, productos.imagen
+                        FROM detalles
+                        INNER JOIN ventas
+                        ON detalles.idventas = ventas.idventas
+                        INNER JOIN productos
+                        ON detalles.idproducto = productos.idproducto
+                        INNER JOIN usuarios
+                        ON ventas.idusuarios = usuarios.idusuarios
+                        WHERE usuarios.idusuarios = '".$id."' AND detalles.idproducto ='".$producto."' ";
+        $stmt       =   $db->prepare($sql);
+        $stmt->execute();
+        $mainCount  =   $stmt->rowCount();
+        $userData   =   $stmt->fetchAll(PDO::FETCH_OBJ);
+        foreach ($userData as $key => $value) {
+            $value->imagen = $url.$value->imagen;
+        }
 
         echo json_encode($userData);
 
@@ -83,9 +119,9 @@ function comprar(){
 
             $db      =  getDB();
             $sql3     =  "INSERT INTO detalles
-                        (iddetalles, idventas, idproducto, cantidad)
+                        (iddetalles, idventas, idproducto, precio, cantidad,idestado_pedido)
                         VALUES 
-                        (NULL,'".$id."', '".$value->idproducto."', '".$value->cantidad."')";
+                        (NULL,'".$id."', '".$value->idproducto."', '".$value->precio."' , '".$value->cantidad."','1')";
             $stmt    = $db->prepare($sql3);
             $stmt->execute();
         }
@@ -226,13 +262,17 @@ function login() {
 }
 
 function productos(){
+    $url = 'http://localhost/melectro/';
+    /* $url = 'https://mega.com.pe/'; */
     try {
         $db         =   getDB();
-        $sql        =   "SELECT * FROM productos WHERE imagen != '' ORDER BY RAND() LIMIT 20";
+        $sql        =   "SELECT * FROM productos WHERE imagen != '' LIMIT 20";
         $stmt       =   $db->prepare($sql);
         $stmt->execute();
         $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
-        
+        foreach ($resultado as $key => $value) {
+            $value->imagen = $url.$value->imagen;
+        }
         echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
     } catch (PDOException $e) {
         echo '[ { "error":"'.$e.'"}]';
@@ -240,12 +280,15 @@ function productos(){
 }
 
 function productosid($id){
+    $url = 'http://localhost/melectro/';
+    /* $url = 'https://mega.com.pe/'; */
     try {
         $db         =   getDB();
         $sql        =   "SELECT * FROM productos WHERE idproducto = '".$id."'";
         $stmt       =   $db->prepare($sql);
         $stmt->execute();
         $resultado  =   $stmt->fetch(PDO::FETCH_OBJ);
+        $resultado->imagen = $url.$resultado->imagen;
         header('Content-Type: application/json');
         print_r(json_encode($resultado,JSON_UNESCAPED_UNICODE));
     } catch (PDOException $e) {

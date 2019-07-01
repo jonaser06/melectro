@@ -4,7 +4,7 @@
         public static function productsModel(){
             try {
                 $db         =   getDB();
-                $sql        =   "SELECT * FROM productos LIMIT 20";
+                $sql        =   "SELECT * FROM productos LIMIT 30";
                 $stmt       =   $db->prepare($sql);
                 $stmt->execute();
                 $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
