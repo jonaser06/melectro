@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-07-2019 a las 02:54:57
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.2.12
+-- Tiempo de generación: 01-07-2019 a las 21:48:04
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,36 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `melectro`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `config_app`
+--
+
+CREATE TABLE `config_app` (
+  `idconfig_app` int(11) NOT NULL,
+  `nombre` text NOT NULL,
+  `ruc` text NOT NULL,
+  `dep` text NOT NULL,
+  `dist` text NOT NULL,
+  `telefono` text NOT NULL,
+  `telefono_2` text NOT NULL,
+  `email` text NOT NULL,
+  `bcp_cta` text NOT NULL,
+  `bcp_name` text NOT NULL,
+  `intbk_cta` text NOT NULL,
+  `intbk_name` text NOT NULL,
+  `sctk_cta` text NOT NULL,
+  `sctk_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `config_app`
+--
+
+INSERT INTO `config_app` (`idconfig_app`, `nombre`, `ruc`, `dep`, `dist`, `telefono`, `telefono_2`, `email`, `bcp_cta`, `bcp_name`, `intbk_cta`, `intbk_name`, `sctk_cta`, `sctk_name`) VALUES
+(1, 'Mega Electro Industrial SAC ', '20557579258', 'Lima - Perú', 'Villa el Salvador', '', '', 'Megaindustrial@gmail.com', '194-20196458-0-15', 'JIMMY JAKSON FARFAN SUAREZ', '194-20196458-0-15', 'JIMMY JAKSON FARFAN SUAREZ', '194-20196458-0-15', 'JIMMY JAKSON FARFAN SUAREZ');
 
 -- --------------------------------------------------------
 
@@ -989,103 +1019,104 @@ CREATE TABLE `usuarios` (
   `documento` bigint(100) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `premium` varchar(10) DEFAULT NULL,
-  `estado` int(2) DEFAULT NULL
+  `estado` int(2) DEFAULT NULL,
+  `change_password` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idusuarios`, `nombres`, `apellidos`, `tipo`, `correo`, `password`, `documento`, `telefono`, `premium`, `estado`) VALUES
-(1, 'A & B BEST COMPANY S.A.C', '-', 1, 'frodriguez@bestcompanysac.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af9', 20492416747, '988 802 631', 'no', 1),
-(2, 'A.E.I. AUTOMATIZACION E.I.R.L.', '-', 1, 'administracion@arminasgroup.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af10', 20543525651, '0', 'no', 1),
-(3, 'ACM MANTENIMIENTO INDUSTRIAL S.A.C.', '-', 1, 'vcastro@acm-mi.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af11', 20451714857, '947021704', 'no', 1),
-(4, 'ADVANCE ASOCIADOS S.R.L.', '-', 1, 'elena.huaripaucar@advance-asoc.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af12', 20508302097, '017193720 ', 'no', 1),
-(5, 'AMAZING COMBUSTIBLES Y GAS S.A.C.', '-', 1, 'acyg.supervision@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af13', 20515610741, '933293845', 'no', 1),
-(6, 'AQ MULTISERVICIOS Y SOLUCIONES ELECTRICAS S.A.C.', '-', 1, 'cotizacion@aqmyse.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af14', 20602902383, '949190586', 'no', 1),
-(7, 'B Y F POWER S.A.', '-', 1, 'jlopez@byfpowersa.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af15', 20332273532, '0', 'no', 1),
-(8, 'BIG COM S.A.C.', '-', 1, 'wrodriguez@branchperu.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af16', 20600944909, '0', 'no', 1),
-(9, 'BYS ENERGY E.I.R.L.', '-', 1, 'Ivan.bellido@bysenergy.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af17', 20601362156, '0', 'no', 1),
-(10, 'C & C INSTALACIONES SOCIEDAD ANONIMA CERRADA', '-', 1, 'ecaillauxs@cycingenieros.net', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af18', 20549064559, '0', 'no', 1),
-(11, 'CAILLAUX Y CAILLAUX INGENIEROS SRL', '-', 1, 'administracion@cycingenieros.net', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af19', 20341778051, '0', 'no', 1),
-(12, 'CATRI PERU S.A.C.', '-', 1, 'compras@catriperu.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af20', 20556766151, '970 785 349', 'no', 1),
-(13, 'CIEZA TELLO MARIA JACKELY', '-', 1, 'jaciete12@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af21', 10704987418, '0', 'no', 1),
-(14, 'COINSA INGENIEROS S.A.C.', '-', 1, 'orlando.soto@coinsa-sac.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af22', 20478124296, '0', 'no', 1),
-(15, 'CORPORACION DE NEGOCIOS DAFESA S.A.C.', '-', 1, 'dafesasac@outlook.es', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af23', 20524427967, '0', 'no', 1),
-(16, 'COTABELEC S.A.C.', '-', 1, 'cotabelec@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af24', 20516390221, '0', 'no', 1),
-(17, 'CRISTHIAN MANUEL', 'DELGADO TIRADO ', 1, 'manuel_0519@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af25', 10451527563, '0', 'no', 1),
-(18, 'DIMTELEK S.A.C.', '-', 1, 'freygospel2@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af26', 20603772491, '997254554', 'no', 1),
-(19, 'DLC INGENIEROS PROYECTOS Y CONSTRUCCION S.A.C', '-', 1, 'miguel.delacruz@dlcsac.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af27', 20601858399, '0', 'no', 1),
-(20, 'E & F TECNOLOGIA COMERCIAL S.A.C.', '-', 1, 'eyftecnologiacomercial@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af28', 20604046034, '945139625', 'no', 1),
-(21, 'EDCOM SOLUTIONS S.R.L.', '-', 1, 'proyectos@edcomsolutions.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af29', 20491978881, '956 732 580', 'no', 1),
-(22, 'ELECTRIC SISTEMAS S.A.C.', '-', 1, 'cpantoja01@yahoo.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af30', 20549335412, '981538500', 'no', 1),
-(23, 'ELECTRO COMERCIAL TORRES HNOS S.A.C.', '-', 1, 'Mauricio25_2017@outlook.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af31', 20600347587, '0', 'no', 1),
-(24, 'ELECTROMETRIA E.I.R.L.', '-', 1, 'electrometria_peru@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af32', 20545461570, '991184300', 'no', 1),
-(25, 'ELENGY SAC', '-', 1, 'cristian.reategui@elengy.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af33', 20601651255, '991296998', 'no', 1),
-(26, 'OSCAR JOEL', 'FARFAN SUAREZ ', 1, 'ofasu1@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af34', 44842037, '994513958', 'no', 1),
-(27, 'GEDIZA E.I.R.L.', '-', 1, 'administracion@gediza.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af35', 20434094926, '0', 'no', 1),
-(28, 'GEMMSA E.I.R.L.', '-', 1, 'gemmsa.eirl@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af36', 20548983399, '0', 'no', 1),
-(29, 'GENTIXS S.A.C.', '-', 1, 'contabilidad2@gentixs.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af37', 20517620450, '998192049', 'no', 1),
-(30, 'GLOBALTEC S.A.C.', '-', 1, 'kmartinez@globaltec.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af38', 20341257167, '0', 'no', 1),
-(31, 'GRUCOIN S.A.C.', '-', 1, 'pcosta@gci.net.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af39', 20546349781, '0', 'no', 1),
-(32, 'H & M SIELEC S.A.C', '-', 1, 'hymsielec@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af40', 20600545923, '966527222', 'no', 1),
-(33, 'H&L ASOCIADOS S.R.L.', '-', 1, 'ivanleon@hilasociadossrl.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af41', 20600175263, '955640565', 'no', 1),
-(34, 'HECTANA MANUFACTURAS ELECTRICAS S.A.C.', '-', 1, 'hectanasac@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af42', 20549459227, '933906583', 'no', 1),
-(35, 'HLN DESARROLLO E INGENIERIA DE PROYECTOS S.A.C.', '-', 1, 'hlnproyectossac@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af43', 20601235448, '986693665', 'no', 1),
-(36, 'HP & T ELECTRIC S.A.C.', '-', 1, 'logistica@hpytelectric.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af44', 20521974495, '936 805 838', 'no', 1),
-(37, 'ILUMINACIONES DEL CENTRO S.A.C.', '-', 1, 'iluminadelcentro@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af45', 20429978549, '0', 'no', 1),
-(38, 'IMD INDUSTRIAL SAC', '-', 1, 'gerencia@imdindustrial.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af46', 20543071103, '998272870', 'no', 1),
-(39, 'INELEK S.A.C', '-', 1, 'administracion@inelek.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af47', 20493071794, '927081972', 'no', 1),
-(40, 'INELEK S.A.C. TABLEROS ELECTRICOS', '-', 1, 'dcontreras@inelek.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af48', 20514908860, '927081972', 'no', 1),
-(41, 'INTELSA E.I.R.L.', '-', 1, 'intelsaeirl08@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af49', 20450157008, '0', 'no', 1),
-(42, 'INTSEN S.A.C.', '-', 1, 'ccorzo@intsensac.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af50', 20537451484, '949091021', 'no', 1),
-(43, 'INVERSIONES ARTIKA S.A.C.', '-', 1, 'tony_wisnar@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af51', 20544985788, '973288570', 'no', 1),
-(44, 'INVERSIONES VINEY S.A.C.', '-', 1, 'inv.vineyventas@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af52', 20603054645, '975009559', 'no', 1),
-(45, 'INVESUX SRL', '-', 1, 'cpe@invesux.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af53', 20502132343, '0', 'no', 1),
-(46, 'ITE INGENIERIA Y TECNOLOGIA S.A.C.', '-', 1, 'administracion@iteingenieria.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af54', 20511794391, '993742069', 'no', 1),
-(47, 'ITESA ELECTRIC PERU S.A.C.', '-', 1, 'contactenos.itesa@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af55', 20601647461, '965220510', 'no', 1),
-(48, 'JVG ENERGIA ALTERNATIVA S.A.C.', '-', 1, 'rpalacios@jvg.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af56', 20602913571, '0', 'no', 1),
-(49, 'KAPEK INTERNACIONAL S.A.C', '-', 1, 'contabilidad@kapekinternacional.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af57', 20509654141, '0', 'no', 1),
-(50, 'KRAMHE .E.I.R.L', '-', 1, 'ccjuansc@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af58', 20523268695, '997035309', 'no', 1),
-(51, 'LISMER CORP S.R.L.', '-', 1, 'lismercorp1@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af59', 20515100891, '994063370', 'no', 1),
-(52, 'LUMAR INGENIERIA Y SOLUCIONES ELECTROMECANICAS S.A', '-', 1, 'jalarcon@lumar.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af60', 20601140323, '971 883 969', 'no', 1),
-(53, 'M.V. CAL CONSTRUCCIONES S.A.C.', '-', 1, 'maximocal_7@yahoo.es', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af61', 20538258777, '981166063', 'no', 1),
-(54, 'MASHIGOTO CONTRATISTAS GENERALES S.R.L.', '-', 1, 'kvargas@mashigoto.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af62', 20509465763, '996599573', 'no', 1),
-(55, 'MECOMGAS INGENIEROS S.A.C.', '-', 1, 'hectorrodolfo1987@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af63', 20551050140, '987400422', 'no', 1),
-(56, 'MQLAY S.A.C.', '-', 1, 'proyectos1@grupolay.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af64', 20566381053, '0', 'no', 1),
-(57, 'MULTISERVICIOS BALDARRAGO S.A.C.', '-', 1, 'proyectos@mbsac.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af65', 20522116115, '993937014', 'no', 1),
-(58, 'OP SERVICE S.A.C.', '-', 1, 'contabilidad@opservicesac.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af66', 20600666666, '0', 'no', 1),
-(59, 'PRE FABRICASAS PALOMINO S.A.C.', '-', 1, 'contabilidad@prefap.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af67', 20507667725, '0', 'no', 1),
-(60, 'PREMIER ELECTRIC SRL', '-', 1, 'ventas@premierelectric.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af68', 20516551764, '939509778', 'no', 1),
-(61, 'PROINDELEC S.A.C.', '-', 1, 'jmilla77@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af69', 20600816790, '941459885', 'no', 1),
-(62, 'PROVEEDORES ELECTRICOS G & R S.A.C.', '-', 1, 'rocio.espinoza@provelec.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af70', 20600312830, '0', 'no', 1),
-(63, 'R & C SOLUTION ELECTRIC EIRL', '-', 1, 'ventas.solutionelectric@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af71', 20602849121, '980618801', 'no', 1),
-(64, 'R Y M ENERGIA & AUTOMATIZACION S.A.C.', '-', 1, 'rym.energia.automatizacion@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af72', 20602513310, '921936257', 'no', 1),
-(65, 'READY ENERGY DEL PERU S.A.C.', '-', 1, 'ventas@ready-energy.net', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af73', 20512464549, '987551810', 'no', 1),
-(66, 'EDWIN MICAEL', 'RUIZ HUAMAN', 1, 'fullventas_ruiz@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af74', 10802542149, '965891516', 'no', 1),
-(67, 'S Y Z COMINSA SRLTDA', '-', 1, 'compras@syzcominsa.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af75', 20141151968, '998182136', 'no', 1),
-(68, 'SERVICIOS GENERALES PROYECTOS Y CONSTRUCCION S.A.C', '-', 1, 'bazanvicente@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af76', 20539791908, '942878295', 'no', 1),
-(69, 'SODEXO PERU S.A.C.', '-', 1, 'Rmarcelo@ bcp.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af77', 20414766308, '966366995', 'no', 1),
-(70, 'SOLUCION ELECTRICA KAREN S.A.C.', '-', 1, 'solucionelectricakaren@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af78', 20547805918, '0', 'no', 1),
-(71, 'SONEPAR PERU S.A.C.', '-', 1, 'danny.amaya@dirome.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af79', 20111740438, '949700083', 'no', 1),
-(72, 'NILTON CESAR', 'SOTO CALQUISTO', 1, 'niltonsoto73@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af80', 10074902427, '976524501', 'no', 1),
-(73, 'NORMAN ALDO', 'SUAREZ LOZA ', 1, 'jacko2012@live.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af81', 9293807, '997279743', 'no', 1),
-(74, 'SUJETAR DEL PERU SAC', '-', 1, 'kremigio@sujetar.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af82', 20543255841, '017173064 ', 'no', 1),
-(75, 'T.J. CASTRO S.A.C.', '-', 1, 'rosauribe@tjcastro.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af83', 20100292956, '994264071', 'no', 1),
-(76, 'TELECOMUNICACIONES ENERGIA Y CONSTRUCCION E.I.R.L.', '-', 1, 'william.otero@telenco.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af84', 20496074077, '976362951', 'no', 1),
-(77, 'TESLA AUTOMATION S.A.C', '-', 1, 'jgodoy@tesla-aut.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af85', 20601968542, '993962329', 'no', 1),
-(78, 'T-ILUMINA PERU S.A.C.', '-', 1, 'josmarymoreno18@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af86', 20563647737, '955373471', 'no', 1),
-(79, 'ALEXANDER ', 'TONDER CAHUAZA ', 1, 'tonderz33@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af87', 10416342585, '0', 'no', 1),
-(80, 'MARIA ANTONIETA', 'TORRES CANCHARI ', 1, 'inver-mafer2@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af88', 10454088561, '0', 'no', 1),
-(81, 'TRANSFORMACION DE METALES NO FERROSOS S.A.C', '-', 1, 'tramfersac@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af89', 20543474054, '998250859', 'no', 1),
-(82, 'TRITON TRADING S.A.', '-', 1, 'fact_electronica@triton.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af90', 20535936669, '0', 'no', 1),
-(83, ' ROGER EDWIN', 'VASQUEZ DAVILA', 1, 'roglizelctric@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af91', 10167951231, '987237373', 'no', 1),
-(84, ' VICTOR OSWALDO', 'VASQUEZ DAVILA', 1, 'invercotrina@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af92', 10075096491, '993819602', 'no', 1),
-(85, 'VELTEK COMPANY S.A.C.', '-', 1, 'veltekcompany@yahoo.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af93', 20552055820, '993064795', 'no', 1),
-(86, 'VENTO NEYRA ALFREDO ', '-', 1, 'caventone@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af94', 10091371494, '998172654', 'no', 1),
-(87, 'VMP INGENIEROS Y CONTRATISTAS GENERALES S.A.C.', '-', 1, 'vmp.ingenieria.servicios@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af95', 20520676857, '993742069', 'no', 1),
-(88, 'ZGS PERU S.A.C.', '-', 1, 'administracion1@zgsperu.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af96', 20602637779, '977726024', 'no', 1),
-(89, 'Jonathan Sergio', 'Narvaez Cuenca', 3, 'jonaser06@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af9', 47793117, '931018386', 'si', 1);
+INSERT INTO `usuarios` (`idusuarios`, `nombres`, `apellidos`, `tipo`, `correo`, `password`, `documento`, `telefono`, `premium`, `estado`, `change_password`) VALUES
+(1, 'A & B BEST COMPANY S.A.C', '-', 1, 'frodriguez@bestcompanysac.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af9', 20492416747, '988 802 631', 'no', 1, 'no'),
+(2, 'A.E.I. AUTOMATIZACION E.I.R.L.', '-', 1, 'administracion@arminasgroup.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af10', 20543525651, '0', 'no', 1, 'no'),
+(3, 'ACM MANTENIMIENTO INDUSTRIAL S.A.C.', '-', 1, 'vcastro@acm-mi.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af11', 20451714857, '947021704', 'no', 1, 'no'),
+(4, 'ADVANCE ASOCIADOS S.R.L.', '-', 1, 'elena.huaripaucar@advance-asoc.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af12', 20508302097, '017193720 ', 'no', 1, 'no'),
+(5, 'AMAZING COMBUSTIBLES Y GAS S.A.C.', '-', 1, 'acyg.supervision@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af13', 20515610741, '933293845', 'no', 1, 'no'),
+(6, 'AQ MULTISERVICIOS Y SOLUCIONES ELECTRICAS S.A.C.', '-', 1, 'cotizacion@aqmyse.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af14', 20602902383, '949190586', 'no', 1, 'no'),
+(7, 'B Y F POWER S.A.', '-', 1, 'jlopez@byfpowersa.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af15', 20332273532, '0', 'no', 1, 'no'),
+(8, 'BIG COM S.A.C.', '-', 1, 'wrodriguez@branchperu.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af16', 20600944909, '0', 'no', 1, 'no'),
+(9, 'BYS ENERGY E.I.R.L.', '-', 1, 'Ivan.bellido@bysenergy.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af17', 20601362156, '0', 'no', 1, 'no'),
+(10, 'C & C INSTALACIONES SOCIEDAD ANONIMA CERRADA', '-', 1, 'ecaillauxs@cycingenieros.net', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af18', 20549064559, '0', 'no', 1, 'no'),
+(11, 'CAILLAUX Y CAILLAUX INGENIEROS SRL', '-', 1, 'administracion@cycingenieros.net', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af19', 20341778051, '0', 'no', 1, 'no'),
+(12, 'CATRI PERU S.A.C.', '-', 1, 'compras@catriperu.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af20', 20556766151, '970 785 349', 'no', 1, 'no'),
+(13, 'CIEZA TELLO MARIA JACKELY', '-', 1, 'jaciete12@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af21', 10704987418, '0', 'no', 1, 'no'),
+(14, 'COINSA INGENIEROS S.A.C.', '-', 1, 'orlando.soto@coinsa-sac.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af22', 20478124296, '0', 'no', 1, 'no'),
+(15, 'CORPORACION DE NEGOCIOS DAFESA S.A.C.', '-', 1, 'dafesasac@outlook.es', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af23', 20524427967, '0', 'no', 1, 'no'),
+(16, 'COTABELEC S.A.C.', '-', 1, 'cotabelec@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af24', 20516390221, '0', 'no', 1, 'no'),
+(17, 'CRISTHIAN MANUEL', 'DELGADO TIRADO ', 1, 'manuel_0519@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af25', 10451527563, '0', 'no', 1, 'no'),
+(18, 'DIMTELEK S.A.C.', '-', 1, 'freygospel2@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af26', 20603772491, '997254554', 'no', 1, 'no'),
+(19, 'DLC INGENIEROS PROYECTOS Y CONSTRUCCION S.A.C', '-', 1, 'miguel.delacruz@dlcsac.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af27', 20601858399, '0', 'no', 1, 'no'),
+(20, 'E & F TECNOLOGIA COMERCIAL S.A.C.', '-', 1, 'eyftecnologiacomercial@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af28', 20604046034, '945139625', 'no', 1, 'no'),
+(21, 'EDCOM SOLUTIONS S.R.L.', '-', 1, 'proyectos@edcomsolutions.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af29', 20491978881, '956 732 580', 'no', 1, 'no'),
+(22, 'ELECTRIC SISTEMAS S.A.C.', '-', 1, 'cpantoja01@yahoo.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af30', 20549335412, '981538500', 'no', 1, 'no'),
+(23, 'ELECTRO COMERCIAL TORRES HNOS S.A.C.', '-', 1, 'Mauricio25_2017@outlook.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af31', 20600347587, '0', 'no', 1, 'no'),
+(24, 'ELECTROMETRIA E.I.R.L.', '-', 1, 'electrometria_peru@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af32', 20545461570, '991184300', 'no', 1, 'no'),
+(25, 'ELENGY SAC', '-', 1, 'cristian.reategui@elengy.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af33', 20601651255, '991296998', 'no', 1, 'no'),
+(26, 'OSCAR JOEL', 'FARFAN SUAREZ ', 1, 'ofasu1@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af34', 44842037, '994513958', 'no', 1, 'no'),
+(27, 'GEDIZA E.I.R.L.', '-', 1, 'administracion@gediza.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af35', 20434094926, '0', 'no', 1, 'no'),
+(28, 'GEMMSA E.I.R.L.', '-', 1, 'gemmsa.eirl@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af36', 20548983399, '0', 'no', 1, 'no'),
+(29, 'GENTIXS S.A.C.', '-', 1, 'contabilidad2@gentixs.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af37', 20517620450, '998192049', 'no', 1, 'no'),
+(30, 'GLOBALTEC S.A.C.', '-', 1, 'kmartinez@globaltec.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af38', 20341257167, '0', 'no', 1, 'no'),
+(31, 'GRUCOIN S.A.C.', '-', 1, 'pcosta@gci.net.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af39', 20546349781, '0', 'no', 1, 'no'),
+(32, 'H & M SIELEC S.A.C', '-', 1, 'hymsielec@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af40', 20600545923, '966527222', 'no', 1, 'no'),
+(33, 'H&L ASOCIADOS S.R.L.', '-', 1, 'ivanleon@hilasociadossrl.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af41', 20600175263, '955640565', 'no', 1, 'no'),
+(34, 'HECTANA MANUFACTURAS ELECTRICAS S.A.C.', '-', 1, 'hectanasac@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af42', 20549459227, '933906583', 'no', 1, 'no'),
+(35, 'HLN DESARROLLO E INGENIERIA DE PROYECTOS S.A.C.', '-', 1, 'hlnproyectossac@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af43', 20601235448, '986693665', 'no', 1, 'no'),
+(36, 'HP & T ELECTRIC S.A.C.', '-', 1, 'logistica@hpytelectric.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af44', 20521974495, '936 805 838', 'no', 1, 'no'),
+(37, 'ILUMINACIONES DEL CENTRO S.A.C.', '-', 1, 'iluminadelcentro@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af45', 20429978549, '0', 'no', 1, 'no'),
+(38, 'IMD INDUSTRIAL SAC', '-', 1, 'gerencia@imdindustrial.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af46', 20543071103, '998272870', 'no', 1, 'no'),
+(39, 'INELEK S.A.C', '-', 1, 'administracion@inelek.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af47', 20493071794, '927081972', 'no', 1, 'no'),
+(40, 'INELEK S.A.C. TABLEROS ELECTRICOS', '-', 1, 'dcontreras@inelek.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af48', 20514908860, '927081972', 'no', 1, 'no'),
+(41, 'INTELSA E.I.R.L.', '-', 1, 'intelsaeirl08@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af49', 20450157008, '0', 'no', 1, 'no'),
+(42, 'INTSEN S.A.C.', '-', 1, 'ccorzo@intsensac.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af50', 20537451484, '949091021', 'no', 1, 'no'),
+(43, 'INVERSIONES ARTIKA S.A.C.', '-', 1, 'tony_wisnar@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af51', 20544985788, '973288570', 'no', 1, 'no'),
+(44, 'INVERSIONES VINEY S.A.C.', '-', 1, 'inv.vineyventas@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af52', 20603054645, '975009559', 'no', 1, 'no'),
+(45, 'INVESUX SRL', '-', 1, 'cpe@invesux.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af53', 20502132343, '0', 'no', 1, 'no'),
+(46, 'ITE INGENIERIA Y TECNOLOGIA S.A.C.', '-', 1, 'administracion@iteingenieria.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af54', 20511794391, '993742069', 'no', 1, 'no'),
+(47, 'ITESA ELECTRIC PERU S.A.C.', '-', 1, 'contactenos.itesa@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af55', 20601647461, '965220510', 'no', 1, 'no'),
+(48, 'JVG ENERGIA ALTERNATIVA S.A.C.', '-', 1, 'rpalacios@jvg.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af56', 20602913571, '0', 'no', 1, 'no'),
+(49, 'KAPEK INTERNACIONAL S.A.C', '-', 1, 'contabilidad@kapekinternacional.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af57', 20509654141, '0', 'no', 1, 'no'),
+(50, 'KRAMHE .E.I.R.L', '-', 1, 'ccjuansc@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af58', 20523268695, '997035309', 'no', 1, 'no'),
+(51, 'LISMER CORP S.R.L.', '-', 1, 'lismercorp1@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af59', 20515100891, '994063370', 'no', 1, 'no'),
+(52, 'LUMAR INGENIERIA Y SOLUCIONES ELECTROMECANICAS S.A', '-', 1, 'jalarcon@lumar.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af60', 20601140323, '971 883 969', 'no', 1, 'no'),
+(53, 'M.V. CAL CONSTRUCCIONES S.A.C.', '-', 1, 'maximocal_7@yahoo.es', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af61', 20538258777, '981166063', 'no', 1, 'no'),
+(54, 'MASHIGOTO CONTRATISTAS GENERALES S.R.L.', '-', 1, 'kvargas@mashigoto.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af62', 20509465763, '996599573', 'no', 1, 'no'),
+(55, 'MECOMGAS INGENIEROS S.A.C.', '-', 1, 'hectorrodolfo1987@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af63', 20551050140, '987400422', 'no', 1, 'no'),
+(56, 'MQLAY S.A.C.', '-', 1, 'proyectos1@grupolay.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af64', 20566381053, '0', 'no', 1, 'no'),
+(57, 'MULTISERVICIOS BALDARRAGO S.A.C.', '-', 1, 'proyectos@mbsac.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af65', 20522116115, '993937014', 'no', 1, 'no'),
+(58, 'OP SERVICE S.A.C.', '-', 1, 'contabilidad@opservicesac.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af66', 20600666666, '0', 'no', 1, 'no'),
+(59, 'PRE FABRICASAS PALOMINO S.A.C.', '-', 1, 'contabilidad@prefap.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af67', 20507667725, '0', 'no', 1, 'no'),
+(60, 'PREMIER ELECTRIC SRL', '-', 1, 'ventas@premierelectric.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af68', 20516551764, '939509778', 'no', 1, 'no'),
+(61, 'PROINDELEC S.A.C.', '-', 1, 'jmilla77@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af69', 20600816790, '941459885', 'no', 1, 'no'),
+(62, 'PROVEEDORES ELECTRICOS G & R S.A.C.', '-', 1, 'rocio.espinoza@provelec.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af70', 20600312830, '0', 'no', 1, 'no'),
+(63, 'R & C SOLUTION ELECTRIC EIRL', '-', 1, 'ventas.solutionelectric@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af71', 20602849121, '980618801', 'no', 1, 'no'),
+(64, 'R Y M ENERGIA & AUTOMATIZACION S.A.C.', '-', 1, 'rym.energia.automatizacion@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af72', 20602513310, '921936257', 'no', 1, 'no'),
+(65, 'READY ENERGY DEL PERU S.A.C.', '-', 1, 'ventas@ready-energy.net', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af73', 20512464549, '987551810', 'no', 1, 'no'),
+(66, 'EDWIN MICAEL', 'RUIZ HUAMAN', 1, 'fullventas_ruiz@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af74', 10802542149, '965891516', 'no', 1, 'no'),
+(67, 'S Y Z COMINSA SRLTDA', '-', 1, 'compras@syzcominsa.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af75', 20141151968, '998182136', 'no', 1, 'no'),
+(68, 'SERVICIOS GENERALES PROYECTOS Y CONSTRUCCION S.A.C', '-', 1, 'bazanvicente@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af76', 20539791908, '942878295', 'no', 1, 'no'),
+(69, 'SODEXO PERU S.A.C.', '-', 1, 'Rmarcelo@ bcp.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af77', 20414766308, '966366995', 'no', 1, 'no'),
+(70, 'SOLUCION ELECTRICA KAREN S.A.C.', '-', 1, 'solucionelectricakaren@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af78', 20547805918, '0', 'no', 1, 'no'),
+(71, 'SONEPAR PERU S.A.C.', '-', 1, 'danny.amaya@dirome.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af79', 20111740438, '949700083', 'no', 1, 'no'),
+(72, 'NILTON CESAR', 'SOTO CALQUISTO', 1, 'niltonsoto73@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af80', 10074902427, '976524501', 'no', 1, 'no'),
+(73, 'NORMAN ALDO', 'SUAREZ LOZA ', 1, 'jacko2012@live.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af81', 9293807, '997279743', 'no', 1, 'no'),
+(74, 'SUJETAR DEL PERU SAC', '-', 1, 'kremigio@sujetar.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af82', 20543255841, '017173064 ', 'no', 1, 'no'),
+(75, 'T.J. CASTRO S.A.C.', '-', 1, 'rosauribe@tjcastro.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af83', 20100292956, '994264071', 'no', 1, 'no'),
+(76, 'TELECOMUNICACIONES ENERGIA Y CONSTRUCCION E.I.R.L.', '-', 1, 'william.otero@telenco.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af84', 20496074077, '976362951', 'no', 1, 'no'),
+(77, 'TESLA AUTOMATION S.A.C', '-', 1, 'jgodoy@tesla-aut.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af85', 20601968542, '993962329', 'no', 1, 'no'),
+(78, 'T-ILUMINA PERU S.A.C.', '-', 1, 'josmarymoreno18@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af86', 20563647737, '955373471', 'no', 1, 'no'),
+(79, 'ALEXANDER ', 'TONDER CAHUAZA ', 1, 'tonderz33@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af87', 10416342585, '0', 'no', 1, 'no'),
+(80, 'MARIA ANTONIETA', 'TORRES CANCHARI ', 1, 'inver-mafer2@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af88', 10454088561, '0', 'no', 1, 'no'),
+(81, 'TRANSFORMACION DE METALES NO FERROSOS S.A.C', '-', 1, 'tramfersac@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af89', 20543474054, '998250859', 'no', 1, 'no'),
+(82, 'TRITON TRADING S.A.', '-', 1, 'fact_electronica@triton.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af90', 20535936669, '0', 'no', 1, 'no'),
+(83, ' ROGER EDWIN', 'VASQUEZ DAVILA', 1, 'roglizelctric@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af91', 10167951231, '987237373', 'no', 1, 'no'),
+(84, ' VICTOR OSWALDO', 'VASQUEZ DAVILA', 1, 'invercotrina@hotmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af92', 10075096491, '993819602', 'no', 1, 'no'),
+(85, 'VELTEK COMPANY S.A.C.', '-', 1, 'veltekcompany@yahoo.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af93', 20552055820, '993064795', 'no', 1, 'no'),
+(86, 'VENTO NEYRA ALFREDO ', '-', 1, 'caventone@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af94', 10091371494, '998172654', 'no', 1, 'no'),
+(87, 'VMP INGENIEROS Y CONTRATISTAS GENERALES S.A.C.', '-', 1, 'vmp.ingenieria.servicios@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af95', 20520676857, '993742069', 'no', 1, 'no'),
+(88, 'ZGS PERU S.A.C.', '-', 1, 'administracion1@zgsperu.com.pe', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af96', 20602637779, '977726024', 'no', 1, 'no'),
+(89, 'Jonathan Sergio', 'Narvaez Cuenca', 3, 'jonaser06@gmail.com', '0e7d3a58784df9345de1732976238d7ff60897d006ae29859486a8e8ed231af9', 47793117, '931018386', 'si', 1, 'si');
 
 -- --------------------------------------------------------
 
@@ -1102,6 +1133,12 @@ CREATE TABLE `ventas` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `config_app`
+--
+ALTER TABLE `config_app`
+  ADD PRIMARY KEY (`idconfig_app`);
 
 --
 -- Indices de la tabla `detalles`
@@ -1147,6 +1184,12 @@ ALTER TABLE `ventas`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `config_app`
+--
+ALTER TABLE `config_app`
+  MODIFY `idconfig_app` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `detalles`

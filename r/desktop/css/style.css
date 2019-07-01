@@ -7,7 +7,7 @@ body{
 .wallpaper{
     width: 100%;
     height: 100%;
-    background: #ccc;
+    background: #21638a;
 }
 .card-container{
     position: relative;
@@ -59,21 +59,34 @@ body{
  }
  .dashboard-content{
     padding-bottom: 35px;
-    background: #e1e2e1
+    background: rgba(23, 23, 69, .3);
+    border-radius: 15px;
+    box-shadow: rgba(2, 8, 20, 0.1) 0px 0.175em 0.5em, rgba(2, 8, 20, 0.08) 0px 0.085em 0.175em;
  }
 .dashboard-option{
     box-sizing: border-box;
     padding: 15px 3px 5px;
-    background: #fff;
+    background: #1d2b53;
     text-align: center;
     margin-top: 35px;
+    border-radius: 15px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 0.175em 0.5em, rgba(255, 255, 255, 0.08) 0px 0.085em 0.175em;
+    transition: box-shadow 0.15s ease 0s, transform 0.15s ease 0s, -webkit-box-shadow 0.15s ease 0s, -webkit-transform 0.15s ease 0s;
+}
+.dashboard-option:hover{
+    position: relative;
+    top:-1px;
+    left: -1px;
+    box-shadow: rgba(2, 8, 20, 0.1) 2px 0.250em 0.5em, rgba(2, 8, 20, 0.08) 0px 0.250em 0.175em;
+
 }
 .ad-op{
     display: block;
-    color: #000;
+    color: #fff;
 }
 .ad-op:hover{
-    color: #000;
+    color: #fff;
+    text-decoration: none;
 }
 .dashboard-option i{
     font-size: 100px;
@@ -85,6 +98,7 @@ body{
     position: relative;
     top: 15%;
     text-align: center;
+    color: #fff;
 }
 .submit-boton{
     background: deepskyblue;

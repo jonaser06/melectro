@@ -7,25 +7,25 @@
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
                         <a href="#" class="ad-op">
                             <i class="fa fa-globe" aria-hidden="true"></i>
-                            <p>Web Site</p>
+                            <p><b>Web Site</b></p>
                         </a>
                     </div>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
                         <a href="app" class="ad-op">
                             <i class="fa fa-rocket" aria-hidden="true"></i>
-                            <p>App</p>
+                            <p><b>App</b></p>
                         </div>
                         </a>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
                         <a href="notification" class="ad-op">
                             <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                            <p>Push Notification</p>
+                            <p><b>Push Notification</b></p>
                         </a>
                     </div>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
                         <a href="productos" class="ad-op">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <p>Productos</p>
+                            <p><b>Productos</b></p>
                         </a>
                     </div>
                 </div>
@@ -33,25 +33,25 @@
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
                         <a href="users" class="ad-op">
                             <i class="fa fa-users" aria-hidden="true"></i>
-                            <p>Usuarios</p>
+                            <p><b>Usuarios</b></p>
                         </a>
                     </div>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
                         <a href="support" class="ad-op">
                             <i class="fa fa-question-circle" aria-hidden="true"></i>
-                            <p>Soporte</p>
+                            <p><b>Soporte</b></p>
                         </a>
                     </div>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
                         <a href="#" class="ad-op">
                             <i class="fa fa-cog" aria-hidden="true"></i>
-                            <p>Configuracion</p>
+                            <p><b>Configuracion</b></p>
                         </a>
                     </div>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
                         <a href="logout" class="ad-op">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
-                            <p>Cerrar Sesión</p>
+                            <p><b>Cerrar Sesión</b></p>
                         </a>
                     </div>
                 </div>
