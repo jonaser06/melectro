@@ -4,7 +4,7 @@ class usersModel{
         try {
             $db         =   getDB();
             $sql        =   "SELECT usuarios.idusuarios, usuarios.nombres, usuarios.apellidos, privilegios.tipo, usuarios.correo, usuarios.documento, usuarios.telefono, usuarios.premium, usuarios.estado
-                            FROM usuarios INNER JOIN privilegios ON usuarios.tipo = privilegios.idprivilegios";
+                            FROM usuarios INNER JOIN privilegios ON usuarios.tipo = privilegios.idprivilegios ORDER BY usuarios.idusuarios ASC";
             $stmt       =   $db->prepare($sql);
             $stmt->execute();
             $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);

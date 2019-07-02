@@ -156,8 +156,14 @@ function admin(){
 
 function login(){
     /* login no tiene footer modularizado por el diseño */
-    include 'modules/head.php';
-    include 'modules/login.php';
+    if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+      echo '<script type="text/javascript">
+                window.location = "admin";
+            </script>';
+    }else{
+      include 'modules/head.php';
+      include 'modules/login.php';
+    }
 }
 function logout(){
   $url = routes::routebase();
