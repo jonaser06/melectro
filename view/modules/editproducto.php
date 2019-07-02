@@ -50,7 +50,13 @@ $base = basename($url2);
                                                     echo '<input autocomplete="off" value="'.$data['precio'].'" type="text" id="addnombre" class="form-control" name="precioProd" style="margin-bottom:10px;">';
                                                 ?>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-4">
+                                                <p>Descuento:</p>
+                                                <?php
+                                                    echo '<input autocomplete="off" value="'.$data['descuento'].'" type="text" id="addnombre" class="form-control" name="descuento" style="margin-bottom:10px;">';
+                                                ?>
+                                            </div>
+                                            <div class="col-md-4">
                                                 <p>UM:</p>
                                                 <select name="umProd" id="" class="form-control">
                                                     <?php
@@ -401,6 +407,7 @@ $base = basename($url2);
                                                 <p>Imagen:</p>
                                                 <div id="renderon" style="border: 1px solid #ccc; width: 100%; height:auto; margin-bottom:10px;">
                                                     <?php
+                                                        if($data['imagen']!=""){ echo 'tiene imagen'; }else{ echo 'no tiene imagen'; }
                                                         echo '<img src="'.$url.'/'.$data['imagen'].'" alt="" style="width: 100%;" >';
                                                     ?>
                                                 </div>

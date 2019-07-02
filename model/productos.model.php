@@ -47,16 +47,30 @@
         public static function updateProductmdl($data){
             try{
                 $db         =   getDB();
-                $sql        =  "UPDATE productos
-                                SET
-                                codigo = '".$data['codigo']."',
-                                nombre = '".$data['nombre']."',
-                                descripcion = '".$data['descripcion']."',
-                                imagen = 'r/upload/".$data['imagen']."',
-                                um = '".$data['um']."',
-                                presentacion = '".$data['prest']."',
-                                precio = '".$data['precio']."'                             
-                                WHERE idproducto='".$data['id']."' ";
+                if($data['imagen']!=""){
+                    $sql        =  "UPDATE productos
+                                    SET
+                                    codigo = '".$data['codigo']."',
+                                    nombre = '".$data['nombre']."',
+                                    descripcion = '".$data['descripcion']."',
+                                    imagen = 'r/upload/".$data['imagen']."',
+                                    um = '".$data['um']."',
+                                    presentacion = '".$data['prest']."',
+                                    precio = '".$data['precio']."',                             
+                                    descuento = '".$data['descuento']."'
+                                    WHERE idproducto='".$data['id']."' ";
+                }else{
+                    $sql        =  "UPDATE productos
+                                    SET
+                                    codigo = '".$data['codigo']."',
+                                    nombre = '".$data['nombre']."',
+                                    descripcion = '".$data['descripcion']."',
+                                    um = '".$data['um']."',
+                                    presentacion = '".$data['prest']."',
+                                    precio = '".$data['precio']."',
+                                    descuento = '".$data['descuento']."'                             
+                                    WHERE idproducto='".$data['id']."' ";
+                }
                 $stmt = $db->prepare($sql);
                 $stmt->execute();
                 $db = null;
@@ -78,6 +92,20 @@
                 $data = '[ { "error":"'.$e.'"}]';
             }
             return $id;
+        }
+
+        public static function busquedaproductmdl($data){
+            try {
+                $db         =   getDB();
+                $sql        =   "SELECT * FROM productos WHERE nombre LIKE '%".$data."%' ";
+                $stmt       =   $db->prepare($sql);
+                $stmt->execute();
+                $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
+                $data = json_encode($resultado, JSON_UNESCAPED_UNICODE);
+            } catch (PDOException $e) {
+                $data = '[ { "error":"'.$e.'"}]';
+            }
+            return $data;
         }
 
     }

@@ -23,6 +23,12 @@
             return $add;
         }
 
+        public static function  busquedaproducto($data){
+            
+            $add = Mproducts::busquedaproductmdl($data);
+            return $add;
+        }
+
         public static function deleteProduct($id){
             $request = Mproducts::deleteProductmdl($id);
             return $request;

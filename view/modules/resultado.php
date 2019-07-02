@@ -35,7 +35,8 @@ $base = basename($url2);
                 <div class="bodybar">
                     <div class="row">   
                         <?php
-                            $productos = products::productsController();
+                            $key = $_GET['q'];
+                            $productos = products::busquedaproducto($key);
                             $json = json_decode($productos,true);
                             foreach ($json as $key => $value) {
                                 echo '<div class="col-md-3 col-12 col-sm-6">

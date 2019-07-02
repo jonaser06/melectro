@@ -11,6 +11,7 @@ $app->get('/productos/','productos');
 $app->get('/productos/add/','addproductos');
 $app->get('/productos/edit/:id','editproductos');
 $app->get('/users/','users');
+$app->get('/busqueda','busqueda');
 $app->get('/support/','support');
 $app->get('/login/','login');
 $app->get('/logout/','logout');
@@ -22,6 +23,13 @@ $app->post('/deleteProducto/','deleteProducto');
 $app->post('/newUser/','newUser');
 $app->post('/newUpload/','newUpload');
 $app->post('/updateProduct/','updateProduct');
+
+
+function busqueda(){
+  include 'modules/head.php';
+  include 'modules/resultado.php';
+  include 'modules/footer.php';
+}
 
 
 function inicio(){
@@ -309,27 +317,51 @@ function updateProduct(){
       $descripcion = $_POST['descripcionProd'];
       $um = $_POST['umProd'];
       $precio = $_POST['precioProd'];
+      $descuento = $_POST['descuento'];
       $prest = $_POST['presProd'];
 
-      $nameImg = $_FILES['image']['name'];
+      if($_FILES['image']['name']){
+        
+        $nameImg = $_FILES['image']['name'];
 
-      $data = array(
-        "id" => $id,
-        "codigo"=>$codigo,
-        "nombre"=>$nombre,
-        "descripcion"=>$descripcion,
-        "imagen"=>$nameImg,
-        "um"=>$um,
-        "precio"=>$precio,
-        "prest"=>$prest
-      );
+        $data = array(
+          "id" => $id,
+          "codigo"=>$codigo,
+          "nombre"=>$nombre,
+          "descripcion"=>$descripcion,
+          "imagen"=>$nameImg,
+          "um"=>$um,
+          "precio"=>$precio,
+          "descuento"=>$descuento,
+          "prest"=>$prest
+        );
+  
+        $upload = uploadImage($_FILES['image']['tmp_name'], $nameImg);
+        /* mandamos la data para la insersion en la bd */
+        $addbd = products::updateProductctrl($data);
+        echo '<script type="text/javascript">
+              window.location = "productos?status=true&message='.$upload.'";
+            </script>';
+      }else{
 
-      $upload = uploadImage($_FILES['image']['tmp_name'], $nameImg);
-      /* mandamos la data para la insersion en la bd */
-      $addbd = products::updateProductctrl($data);
-      echo '<script type="text/javascript">
-            window.location = "productos?status=true&message='.$upload.'";
-          </script>';
+        $data = array(
+          "id" => $id,
+          "codigo"=>$codigo,
+          "nombre"=>$nombre,
+          "descripcion"=>$descripcion,
+          "um"=>$um,
+          "precio"=>$precio,
+          "descuento"=>$descuento,
+          "prest"=>$prest
+        );
+        /* mandamos la data para la insersion en la bd */
+        $addbd = products::updateProductctrl($data);
+        echo '<script type="text/javascript">
+              window.location = "productos?status=true&message=Actualizado";
+            </script>';
+      }
+
+      
     }else{
       echo '<script type="text/javascript">
             window.location = "productos?status=false&message=a '.var_dump($data).'";
