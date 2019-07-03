@@ -138,6 +138,21 @@ class usersModel{
         }
         
     }
+
+    function searchUsermdl($input) {
+        try {
+            $db         =   getDB();
+            $sql        =   "SELECT * FROM usuarios WHERE nombres LIKE '%".$input."%' ";
+            $stmt       =   $db->prepare($sql);
+            $stmt->execute();
+            $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
+            $data = json_encode($resultado, JSON_UNESCAPED_UNICODE);
+        } catch (PDOException $e) {
+            $data = '[ { "error":"'.$e.'"}]';
+        }
+        return $data;
+    }
+
 }
 
 ?>

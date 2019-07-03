@@ -8,14 +8,23 @@
     width: 60px;
     height: 100%;
     background: #1d2b53;
+    text-align: center;
 }
 .option-bar{
     position: relative;
-    top: 20%;
+    top: 12%;
     display: block;
     list-style: none;
     padding: 0px;
     text-align: center;
+}
+.main-menu{
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 30px;
+    display: block;
+    color: #fff;
 }
 .option-bar li a {
     display: block;

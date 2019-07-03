@@ -39,7 +39,11 @@ $base = basename($url2);
                                                 <p>Precio:</p>
                                                 <input autocomplete="off" type="text" id="addnombre" class="form-control" name="precioProd" style="margin-bottom:10px;">
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-4">
+                                                <p>Descuento:</p>
+                                                <input autocomplete="off" type="text" id="addnombre" class="form-control" name="descuento" style="margin-bottom:10px;">
+                                            </div>
+                                            <div class="col-md-4">
                                                 <p>UM:</p>
                                                 <select name="umProd" id="" class="form-control">
                                                     <option value="BL">BALDE (BL)</option>

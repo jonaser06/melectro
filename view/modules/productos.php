@@ -1,5 +1,10 @@
 <?php
 $base = basename($url2);
+if(!$_GET){
+    echo '<script type="text/javascript">
+                window.location = "productos?pagina=1";
+            </script>';
+}
 ?>
 <body>
     <div class="wall-products">
@@ -29,13 +34,14 @@ $base = basename($url2);
                     ?>
                         Busqueda :
                         <input type="text" name="q" id="txt_busca" placeholder="Ingrese el termino de busqueda">
-                        <button class="btn_busca">Buscar</button>
+                        <button type="submit" class="btn_busca">Buscar</button>
                     </form>
                 </div>
                 <div class="bodybar">
                     <div class="row">   
                         <?php
-                            $productos = products::productsController();
+                            $key = ($_GET['pagina']-1)*20;
+                            $productos = products::productsController($key);
                             $json = json_decode($productos,true);
                             foreach ($json as $key => $value) {
                                 echo '<div class="col-md-3 col-12 col-sm-6">
@@ -112,7 +118,30 @@ $base = basename($url2);
                         
                     </div>
                 </div> 
-                <div class="footbar"></div>
+                <div class="footbar" style="text-align:center;">
+                    <nav aria-label="Page navigation example" style="display:inline-block;">
+                        <ul class="pagination">
+                            <?php
+                                if(($_GET['pagina']-1)==0){
+                                    echo '<li class="page-item disabled"><a class="page-link" href="'.$url.'/productos?pagina='.($_GET['pagina']-1).'">Anterior</a></li>';
+                                }else{
+                                    echo '<li class="page-item"><a class="page-link" href="'.$url.'/productos?pagina='.($_GET['pagina']-1).'">Anterior</a></li>';
+                                }
+                                $productos = products::pagination();
+                                echo '<script>console.log('.$productos.')</script>';
+                                for ($i=0; $i < 10; $i++) {
+                                    
+                                    if($_GET['pagina']==($i+1)){
+                                        echo '<li class="page-item active"><a class="page-link" href="'.$url.'/productos?pagina='.($i+1).'">'.($i+1).'</a></li>';
+                                    }else{
+                                        echo '<li class="page-item"><a class="page-link" href="'.$url.'/productos?pagina='.($i+1).'">'.($i+1).'</a></li>';
+                                    }
+                                }
+                                echo '<li class="page-item"><a class="page-link" href="'.$url.'/productos?pagina='.($_GET['pagina']+1).'">Next</a></li>';
+                            ?>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>        

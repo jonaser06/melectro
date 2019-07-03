@@ -106,7 +106,8 @@ $base = basename($url2);
                         </tr>
                         </thead>
                         <?php
-                            $data = usersController::listUsers();
+                            $key = $_GET['q'];
+                            $data = usersController::searchUser($key);
                             $json = json_decode($data,true);
                             echo '<tbody class="vista_nn" style="display:contents">';
                             foreach ($json as $key => $value) {

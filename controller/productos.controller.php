@@ -1,9 +1,9 @@
 <?php
     class products{
 
-        public static function productsController(){
+        public static function productsController($key){
             
-            $productos = Mproducts::productsModel();
+            $productos = Mproducts::productsModel($key);
             return $productos;
         }
         public static function getProductByID($id){
@@ -23,9 +23,15 @@
             return $add;
         }
 
-        public static function  busquedaproducto($data){
+        public static function busquedaproducto($data){
             
             $add = Mproducts::busquedaproductmdl($data);
+            return $add;
+        }
+
+        public static function pagination(){
+            
+            $add = Mproducts::paginationmdl();
             return $add;
         }
 

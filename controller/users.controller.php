@@ -15,6 +15,11 @@ class usersController{
         return $request;
     }
 
+    public static function searchUser($id){
+        $request = usersModel::searchUsermdl($id);
+        return $request;
+    }
+
     public static function newUser($data){
         $request = usersModel::newUsermdl($data);
         return $request;

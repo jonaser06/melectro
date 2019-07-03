@@ -6,12 +6,13 @@ $app = new \Slim\Slim();
 $app->get('/','inicio');
 $app->get('/admin/','admin');
 $app->get('/app/','app');
-$app->get('/notification/','notification');
+$app->get('/chart/','chart');
 $app->get('/productos/','productos');
 $app->get('/productos/add/','addproductos');
 $app->get('/productos/edit/:id','editproductos');
 $app->get('/users/','users');
 $app->get('/busqueda','busqueda');
+$app->get('/search_user','searchuser');
 $app->get('/support/','support');
 $app->get('/login/','login');
 $app->get('/logout/','logout');
@@ -31,6 +32,12 @@ function busqueda(){
   include 'modules/footer.php';
 }
 
+function searchuser(){
+  include 'modules/head.php';
+  include 'modules/s_search.php';
+  include 'modules/footer.php';
+}
+
 
 function inicio(){
     include 'modules/head.php';
@@ -41,7 +48,7 @@ function app(){
   session_start();
   if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
     include 'modules/head.php';
-    include 'modules/productos.php';
+    include 'modules/app.php';
     include 'modules/footer.php';
   }else{
     echo '<script type="text/javascript">
@@ -50,11 +57,11 @@ function app(){
   }
 }
 
-function notification(){
+function chart(){
   session_start();
   if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
     include 'modules/head.php';
-    include 'modules/productos.php';
+    include 'modules/chart.php';
     include 'modules/footer.php';
   }else{
     echo '<script type="text/javascript">
@@ -281,6 +288,7 @@ function newUpload(){
       $descripcion = $_POST['descripcionProd'];
       $um = $_POST['umProd'];
       $precio = $_POST['precioProd'];
+      $descuento = $_POST['descuento'];
       $prest = $_POST['presProd'];
       
       $nameImg = $_FILES['image']['name'];
@@ -292,6 +300,7 @@ function newUpload(){
         "imagen"=>$nameImg,
         "um"=>$um,
         "precio"=>$precio,
+        "descuento"=>$descuento,
         "prest"=>$prest
       );
 
@@ -299,11 +308,11 @@ function newUpload(){
       /* mandamos la data para la insersion en la bd */
       $addbd = products::addProduct($data);
       echo '<script type="text/javascript">
-            window.location = "productos?status=true&message='.$upload.'";
+            window.location = "productos?pagina=1&status=true&message='.$upload.'";
           </script>';
     }else{
       echo '<script type="text/javascript">
-            window.location = "productos?status=false&message=Revice que ha llenado todos los campos";
+            window.location = "productos?pagina=1&status=false&message=Revice que ha llenado todos los campos";
           </script>';
     }
 
@@ -346,7 +355,7 @@ function updateProduct(){
         /* mandamos la data para la insersion en la bd */
         $addbd = products::updateProductctrl($data);
         echo '<script type="text/javascript">
-              window.location = "productos?status=true&message='.$upload.'";
+              window.location = "productos?pagina=1&status=true&message='.$upload.'";
             </script>';
       }else{
 
@@ -363,14 +372,14 @@ function updateProduct(){
         /* mandamos la data para la insersion en la bd */
         $addbd = products::updateProductctrl($data);
         echo '<script type="text/javascript">
-              window.location = "productos?status=true&message=Actualizado";
+              window.location = "productos?pagina=1&status=true&message=Actualizado";
             </script>';
       }
 
       
     }else{
       echo '<script type="text/javascript">
-            window.location = "productos?status=false&message=a '.var_dump($data).'";
+            window.location = "productos?pagina=1&status=false&message=a '.var_dump($data).'";
           </script>';
     }
 
