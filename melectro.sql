@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-07-2019 a las 21:48:04
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 7.2.7
+-- Tiempo de generación: 04-07-2019 a las 05:11:21
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -64,7 +64,8 @@ CREATE TABLE `detalles` (
   `idproducto` int(11) NOT NULL,
   `precio` text NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `idestado_pedido` int(11) NOT NULL
+  `idestado_pedido` int(11) NOT NULL,
+  `envio` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

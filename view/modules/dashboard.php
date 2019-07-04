@@ -11,15 +11,15 @@
                         </a>
                     </div>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
-                        <a href="app" class="ad-op">
-                            <i class="fa fa-rocket" aria-hidden="true"></i>
-                            <p><b>App</b></p>
+                        <a href="truck" class="ad-op">
+                            <i class="fa fa-truck" aria-hidden="true"></i>
+                            <p><b>Pedidos</b></p>
                         </div>
                         </a>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
                         <a href="notification" class="ad-op">
-                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                            <p><b>Push Notification</b></p>
+                            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                            <p><b>Reportes</b></p>
                         </a>
                     </div>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">

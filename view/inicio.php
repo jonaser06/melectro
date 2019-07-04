@@ -5,7 +5,7 @@ $app = new \Slim\Slim();
 
 $app->get('/','inicio');
 $app->get('/admin/','admin');
-$app->get('/app/','app');
+$app->get('/truck/','truck');
 $app->get('/chart/','chart');
 $app->get('/productos/','productos');
 $app->get('/productos/add/','addproductos');
@@ -44,11 +44,11 @@ function inicio(){
     include 'modules/inicio.php';
 }
 
-function app(){
+function truck(){
   session_start();
   if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
     include 'modules/head.php';
-    include 'modules/app.php';
+    include 'modules/truck.php';
     include 'modules/footer.php';
   }else{
     echo '<script type="text/javascript">
