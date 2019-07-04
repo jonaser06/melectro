@@ -5,7 +5,7 @@
     <ul class="option-bar">
         <li class="<?php echo ($base=='web')?'active':''; ?>"><a href="#"><i class="fa fa-globe" aria-hidden="true"></i></a></li>
         <li class="<?php echo ($base=='truck')?'active':''; ?>"><a href="<?php echo $url;?>/truck"><i class="fa fa-truck" aria-hidden="true"></i></a></li>
-        <li class="<?php echo ($base=='notification')?'active':''; ?>"><a href="chart"><i class="fa fa-bar-chart" aria-hidden="true"></i>   </a></li>
+        <li class="<?php echo ($base=='chart')?'active':''; ?>"><a href="chart"><i class="fa fa-bar-chart" aria-hidden="true"></i>   </a></li>
         <li class="<?php echo ($base=='productos' || $base=='add' || $base=='productos?pagina=1')?'active':''; ?>"><a href="<?php echo $url;?>/productos"><i class="fa fa-shopping-cart" aria-hidden="true"></i> </a></li>
         <li class="<?php echo ($base=='users')?'active':''; ?>"><a href="<?php echo $url;?>/users"><i class="fa fa-users" aria-hidden="true"></i> </a></li>
         <li class="<?php echo ($base=='support')?'active':''; ?>"><a href="<?php echo $url;?>/support"><i class="fa fa-question-circle" aria-hidden="true"></i>   </a></li>

@@ -11,52 +11,95 @@ $base = basename($url2);
                 <div class="headbar">
                     <div class="row roundstyle">
                         <div class="col-md-12 t-align">
-                            <p style="display:inline;"><span class="fa fa-shopping-cart"></span>| Productos</p>
-                            <button class="boton-add">Agregar (+)</button>
+                            <p style="display:inline;"><span class="fa fa-bar-chart"></span>| Reportes de Ventas</p>
                         </div>
                     </div>
                 </div>
                 <div class="bodybar">
                     <div class="row">   
-                        <?php
-                            $productos = products::productsController();
-                            $json = json_decode($productos,true);
-                            foreach ($json as $key => $value) {
-                                echo '<div class="col-md-3 col-12 col-sm-6">
-                                        <div class="item-products">
-                                            <div class="img-prod">
-                                                <img src="'.$url.'/r/desktop/img/products.png">
-                                            </div>
-                                            <h4>'.$value['descripcion'].'</h4>
-                                            <div class="produc-cont">
-                                                <p>
-                                                <button class="btn btn-primary">Editar</button>
-                                                <button class="btn btn-danger">Borrar</button><br>
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                                </p>
-                                            </div>
-                                            <h4>S/. '.$value['precio'].'</h4>
-                                        </div> 
-                                    </div>';
-                            }
-                        ?>
-                        <!-- <div class="col-md-3">
-                            <div class="item-products">
-                                <div class="img-prod">
-                                    <img src="img/products.png">
-                                </div>
-                                <h4>Titulo de producto</h4>
-                                <div class="produc-cont">
-                                    <p>
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Provident cupiditate nemo tempora placeat natus.
-                                    </p>
-                                </div>
-                                <h4>S/. 100.00</h4>
-                            </div> 
-                        </div> -->
-
-                        
+                        <div class="col-md-12">
+                            <div class="contentChart" style="background:#fff;border-radius:15px;padding:15px;">
+                                <div id="myfirstchart"></div>
+                                <script>
+                                    new Morris.Line({
+                                        // ID of the element in which to draw the chart.
+                                        element: 'myfirstchart',
+                                        // Chart data records -- each entry in this array corresponds to a point on
+                                        // the chart.
+                                        data: [
+                                            { year: '2008', value: 20 },
+                                            { year: '2009', value: 10 },
+                                            { year: '2010', value: 5 },
+                                            { year: '2011', value: 5 },
+                                            { year: '2012', value: 20 }
+                                        ],
+                                        // The name of the data record attribute that contains x-values.
+                                        xkey: 'year',
+                                        // A list of names of data record attributes that contain y-values.
+                                        ykeys: ['value'],
+                                        // Labels for the ykeys -- will be displayed when you hover over the
+                                        // chart.
+                                        labels: ['Value']
+                                        });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div id="donut-example"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <div id="donut-example2"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <div id="donut-example3"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <div id="donut-example4"></div>
+                        </div>
+                        <script>
+                            Morris.Donut({
+                            element: 'donut-example',
+                            data: [
+                                {label: "Download Sales", value: 12},
+                                {label: "In-Store Sales", value: 30},
+                                {label: "Mail-Order Sales", value: 20}
+                            ]
+                            });
+                            Morris.Donut({
+                            element: 'donut-example2',
+                            data: [
+                                {label: "Download Sales", value: 12},
+                                {label: "In-Store Sales", value: 30},
+                                {label: "Mail-Order Sales", value: 20}
+                            ]
+                            });
+                            Morris.Donut({
+                            element: 'donut-example3',
+                            data: [
+                                {label: "Download Sales", value: 12},
+                                {label: "In-Store Sales", value: 30},
+                                {label: "Mail-Order Sales", value: 20}
+                            ]
+                            });
+                            Morris.Donut({
+                            element: 'donut-example4',
+                            data: [
+                                {label: "Download Sales", value: 12},
+                                {label: "In-Store Sales", value: 30},
+                                {label: "Mail-Order Sales", value: 20}
+                            ]
+                            });
+                        </script>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            dona
+                        </div>
+                        <div class="col-md-6">
+                            dona
+                        </div>
                     </div>
                 </div> 
                 <div class="footbar"></div>

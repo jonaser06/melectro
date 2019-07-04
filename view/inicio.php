@@ -6,6 +6,7 @@ $app = new \Slim\Slim();
 $app->get('/','inicio');
 $app->get('/admin/','admin');
 $app->get('/truck/','truck');
+$app->get('/detallePedido/:id','detallePedido');
 $app->get('/chart/','chart');
 $app->get('/productos/','productos');
 $app->get('/productos/add/','addproductos');
@@ -49,6 +50,19 @@ function truck(){
   if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
     include 'modules/head.php';
     include 'modules/truck.php';
+    include 'modules/footer.php';
+  }else{
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
+  }
+}
+
+function detallePedido($id){
+  session_start();
+  if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+    include 'modules/head.php';
+    include 'modules/d_pedido.php';
     include 'modules/footer.php';
   }else{
     echo '<script type="text/javascript">
