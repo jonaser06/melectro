@@ -17,6 +17,14 @@
 
         }
 
+        public static function EstadoUpdatePedido($input){
+
+            $data = pedidosModel::EstadoUpdatePedidomdl($input);
+
+            return $data;
+
+        }
+
     }
 
 ?>

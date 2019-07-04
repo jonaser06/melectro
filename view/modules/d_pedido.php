@@ -19,7 +19,11 @@ $base = basename($url2);
                     <div class="row">   
                         <div class="col-md-8" style="text-align:left;">
                             <div class="content_detail" style="background:#fff; padding:20px; border-radius:15px;">
+                                
+                                
+                                
                                 <?php 
+                                    echo '<form action="'.$url.'/pedidoUpdate" method="POST" id="formpedido">';
                                     $data = pedidosController::PedidosIdctrl($id);
                                     $json = json_decode($data,true);
                                     foreach ($json as $key => $value) {
@@ -64,16 +68,17 @@ $base = basename($url2);
                                                 <hr>
                                                 <p><b>Detalles Generales</b></p>
                                                 <p>Fecha de pedido</p>
-                                                <input type="text" class="form-control" aria-describedby="basic-addon3" value="'.$value['fecha'].'"><br>
+                                                <input type="date" class="form-control" value="'.$value['fecha'].'" name="fecha"><br>
                                                 <p>Estado de pedido</p>
-                                                <select class="custom-select" id="inputGroupSelect01">
+                                                <select class="custom-select" name="estado">
                                                     '.$select.'
                                                 </select>
                                                 <p>Metodo de pago </p>
-                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="'.$value['metodoPago'].'"><br>
+                                                <input type="text" class="form-control" id="basic-url" name="metodoPago" value="'.$value['metodoPago'].'"><br>
                                                 <p>Envio</p>
-                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="'.$value['envio'].'"><br>';
+                                                <input type="text" class="form-control" id="basic-url" name="envio" value="'.$value['envio'].'"><br>';
                                     }
+                                    echo '</form>';
                                 ?>
                                 <table class="table" style="text-align:left;">
                                     <thead>
@@ -109,10 +114,15 @@ $base = basename($url2);
                                 <hr>
                                 <div class="botor_accion" style="text-align:center;width:100%;">
                                     <button class="btn btn-danger" style="width:40%;margin-right:5%">Cancelar</button>
-                                    <button class="btn btn-success" style="width:40%;margin-left:5%">Guardar</button>
+                                    <button class="btn btn-success" style="width:40%;margin-left:5%" id="savepedido">Guardar</button>
                                 </div>
                             </div>
                         </div>
+                        <script>
+                            $('#savepedido').click(function(){
+                                $('#formpedido').submit();
+                            });
+                        </script>
                     </div>
                 </div> 
                 <div class="footbar"></div>

@@ -25,7 +25,37 @@ $app->post('/deleteProducto/','deleteProducto');
 $app->post('/newUser/','newUser');
 $app->post('/newUpload/','newUpload');
 $app->post('/updateProduct/','updateProduct');
+$app->post('/pedidoUpdate/','pedidoUpdate');
 
+
+function pedidoUpdate(){
+  session_start();
+  if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
+
+    $data = array(
+              "fecha"=>$_POST['fecha'],
+              "estado"=>$_POST['estado'],
+              "metodo"=>$_POST['metodoPago'],
+              "envio"=>$_POST['envio']
+            );
+    $update = pedidosController::EstadoUpdatePedido($data);
+    $json = json_decode($update,true);
+    if($json["status"]=='true'){
+      echo '<script type="text/javascript">
+            window.location = "truck?status=true&message='.$json["message"].'";
+          </script>';
+    }else{
+      echo '<script type="text/javascript">
+            window.location = "truck?status=true&message=ocurrio un error, verifique los campos";
+          </script>';
+    }
+  }else{
+    echo '<script type="text/javascript">
+                window.location = "login";
+            </script>';
+  }
+
+}
 
 function busqueda(){
   include 'modules/head.php';
@@ -51,6 +81,16 @@ function truck(){
     include 'modules/head.php';
     include 'modules/truck.php';
     include 'modules/footer.php';
+    if($_GET['status']=='true'){
+      echo '<script>
+              toastr.success("'.$_GET['message'].'", "Estado");
+            </script>';
+    }
+    if($_GET['status']=='false'){
+      echo '<script>
+              toastr.error("'.$_GET['message'].'", "Estado");
+            </script>';
+    }
   }else{
     echo '<script type="text/javascript">
                 window.location = "login";

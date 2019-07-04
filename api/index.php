@@ -20,14 +20,48 @@ $app = new \Slim\Slim();
 $app->post('/login','login');
 $app->post('/signup','signup');
 $app->post('/comprar','comprar');
+$app->post('/sendemail','sendemail');
 
 /**GET */
+$app->get('/settings/','settings');
+$app->get('/busqueda/:id','busqueda');
 $app->get('/productos/all/','productos');
+$app->get('/productos/all/:id','productosallid');
 $app->get('/productos/:id','productosid');
 $app->get('/historial/:id','historial');
 $app->get('/historialunit/:id/:producto','historialunit');
 
 
+function busqueda($id){
+    $url = 'http://localhost/melectro/';
+    try {
+        $db         =   getDB();
+        $sql        =   "SELECT * FROM productos WHERE nombre LIKE '%".$id."%' ";
+        $stmt       =   $db->prepare($sql);
+        $stmt->execute();
+        $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
+        foreach ($resultado as $key => $value) {
+            $value->imagen = $url.$value->imagen;
+        }
+        $data = json_encode($resultado, JSON_UNESCAPED_UNICODE);
+    } catch (PDOException $e) {
+        $data = '[ { "error":"'.$e.'"}]';
+    }
+    echo $data;
+}
+function settings(){
+    try {
+        $db         =   getDB();
+        $sql        =   "SELECT * FROM config_app";
+        $stmt       =   $db->prepare($sql);
+        $stmt->execute();
+        $resultado  =   $stmt->fetch(PDO::FETCH_OBJ);
+        echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
+
+    } catch (PDOException $e) {
+        echo '[ { "error":"'.$e.'"}]';
+    }
+}
 function historial($id){
     $url = 'http://localhost/melectro/';
     try {
@@ -155,6 +189,25 @@ function comprar(){
 
 }
 
+function sendemail(){
+    $request    =   \Slim\Slim::getInstance()->request();
+    $data       =    json_decode($request->getBody());
+
+    $titulo = 'Confirmacion de Pedido';
+        ob_start();
+        include "template-email.php";
+        $mensaje = ob_get_contents();
+        ob_end_clean();
+
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";   
+        $cabeceras .= 'From: Recordatorio <mail@servidormail.com>' . "\r\n";    
+        $bolEnviar=mail($para->correo, $titulo, $para->mensaje, $cabeceras);
+
+
+        echo '{"status":"success","message":"Mensaje enviado"}';
+}
+
 
 /* Funciones definidas */
 function signup() {
@@ -189,8 +242,8 @@ function signup() {
             if($mainCount==0)
             {
                 /**se inserta el nuevo usuario */
-                $sql1       =   "INSERT INTO usuarios(nombres, apellidos, tipo, correo, password, documento, telefono, premium, estado) 
-                                              VALUES (:nombres, :apellidos, :tipo, :correo, :password, :documento, :telefono, :premium, :estado)";
+                $sql1       =   "INSERT INTO usuarios(nombres, apellidos, tipo, correo, password, documento, telefono, premium, estado, change_password) 
+                                              VALUES (:nombres, :apellidos, :tipo, :correo, :password, :documento, :telefono, :premium, :estado, 'si')";
                 $stmt1      =   $db->prepare($sql1);
                 $stmt1->bindParam("nombres", $nombres,PDO::PARAM_STR);
                 $stmt1->bindParam("apellidos", $apellidos,PDO::PARAM_STR);
@@ -272,8 +325,45 @@ function productos(){
         $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
         foreach ($resultado as $key => $value) {
             $value->imagen = $url.$value->imagen;
+            $value->descuento = '';
         }
         echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
+    } catch (PDOException $e) {
+        echo '[ { "error":"'.$e.'"}]';
+    }
+}
+
+function productosallid($id){
+    $url = 'http://localhost/melectro/';
+    /* $url = 'https://mega.com.pe/'; */
+    try {
+        $db         =   getDB();
+        $sql        =   "SELECT premium FROM usuarios WHERE idusuarios = '".$id."' ";
+        $stmt       =   $db->prepare($sql);
+        $stmt->execute();
+        $resultado  =   $stmt->fetch(PDO::FETCH_OBJ);
+        if($resultado->premium == 'si'){
+            $db         =   getDB();
+            $sql        =   "SELECT * FROM productos WHERE imagen != '' LIMIT 20";
+            $stmt       =   $db->prepare($sql);
+            $stmt->execute();
+            $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
+            foreach ($resultado as $key => $value) {
+                $value->imagen = $url.$value->imagen;
+            }
+            echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
+        }else{
+            $db         =   getDB();
+            $sql        =   "SELECT * FROM productos WHERE imagen != '' LIMIT 20";
+            $stmt       =   $db->prepare($sql);
+            $stmt->execute();
+            $resultado  =   $stmt->fetchAll(PDO::FETCH_OBJ);
+            foreach ($resultado as $key => $value) {
+                $value->imagen = $url.$value->imagen;
+                $value->descuento = '';
+            }
+            echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
+        }
     } catch (PDOException $e) {
         echo '[ { "error":"'.$e.'"}]';
     }

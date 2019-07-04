@@ -17,7 +17,7 @@
                         </div>
                         </a>
                     <div class="col-md-2 ml-auto mr-auto dashboard-option">
-                        <a href="notification" class="ad-op">
+                        <a href="chart" class="ad-op">
                             <i class="fa fa-bar-chart" aria-hidden="true"></i>
                             <p><b>Reportes</b></p>
                         </a>
