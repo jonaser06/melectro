@@ -33,6 +33,7 @@ function pedidoUpdate(){
   if(isset($_SESSION['LoginStatus']) && $_SESSION['LoginStatus'] == 'true'){
 
     $data = array(
+              "iddetalles"=>$_POST['iddetalles'],
               "fecha"=>$_POST['fecha'],
               "estado"=>$_POST['estado'],
               "metodo"=>$_POST['metodoPago'],

@@ -73,7 +73,7 @@
                 $stmt       =   $db->prepare($sql);
                 $stmt->execute();
                 /* segunda consulta */
-                $sql        =   "UPDATE detalles SET idestado_pedido='".$input['estado']."', metodoPago='".$input['metodo']."', envio='".$input['envio']."' ";
+                $sql        =   "UPDATE detalles SET idestado_pedido='".$input['estado']."', metodoPago='".$input['metodo']."', envio='".$input['envio']."' WHERE iddetalles= '".$input['iddetalles']."'  ";
                 $stmt       =   $db->prepare($sql);
                 $stmt->execute();
                 $db = null;

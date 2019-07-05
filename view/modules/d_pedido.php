@@ -77,6 +77,7 @@ $base = basename($url2);
                                                 <input type="text" class="form-control" id="basic-url" name="metodoPago" value="'.$value['metodoPago'].'"><br>
                                                 <p>Envio</p>
                                                 <input type="text" class="form-control" id="basic-url" name="envio" value="'.$value['envio'].'"><br>';
+                                        echo '<input name="iddetalles" type="hidden" value="'.$value['iddetalles'].'">';
                                     }
                                     echo '</form>';
                                 ?>
